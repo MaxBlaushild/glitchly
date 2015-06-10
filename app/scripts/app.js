@@ -12,7 +12,7 @@ angular
     'MainController',
     'MainDirective'
   ])
-  .run(function($rootScope, $http, $window, $location, AuthFactory) {
+  .run(function($rootScope, $http, $window, $location, AuthFactory, PictureFactory) {
     if(AuthFactory.isLoggedIn()){
       var data = $window.localStorage.getItem('gl-user-token');
       $http.defaults.headers.common.Authorization = 'Token token=' + data;
@@ -20,13 +20,13 @@ angular
       $location.path('/login');
     }
 
-    // $rootScope.$on('$routeChangeStart', function(){
-    //   if(!AuthFactory.isLoggedIn()){
-    //     // $location.path('/login');
-    //   } else if ($location.path() === '/') {
-    //     TournamentFactory.getTournaments();
-    //   } else if ($location.path() === '/tournament') {
-    //     var id = $location.hash();
+    $rootScope.$on('$routeChangeStart', function(){
+        if ($location.path() === '/') {
+            PictureFactory.getFeed();
+        } else if ($location.path() === '/pictures') {
+            var id = $location.hash();
+            PictureFactory.getPicture(id);
+        };
     //     TournamentFactory.getTournament(id);
     //     OutcomeFactory.getOutcomes(id);
     //     RoundFactory.getRounds(id);
@@ -45,7 +45,7 @@ angular
     //     var id = $location.hash();
     //     TeamFactory.getTeam(id);
     //   }
-    // });
+    });
   });
 
 

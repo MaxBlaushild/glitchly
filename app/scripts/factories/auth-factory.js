@@ -2,7 +2,11 @@
 
 angular
   .module('frontendApp')
-  .factory('AuthFactory', ['$http', '$location', '$window', function($http, $location, $window) {
+  .factory('AuthFactory', AuthFactory);
+
+  AuthFactory.$inject = ['$http', '$location', '$window'];
+
+   function AuthFactory($http, $location, $window) {
     var profile = {};
 
     function getProfile() {
@@ -34,7 +38,7 @@ angular
         return true;
       } else {
         return false;
-      }
+      };
     };
 
     return {
@@ -45,4 +49,4 @@ angular
       isLoggedIn: isLoggedIn
     };
 
-  }]);
+  };

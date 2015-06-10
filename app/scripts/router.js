@@ -11,6 +11,9 @@ angular.module('frontendApp').config(['$routeProvider', function($routeProvider)
     .when('/sign-up', {
       templateUrl: 'views/sign-up-view.html'
     })
+    .when('/pictures', {
+      templateUrl: 'views/picture-show-view.html'
+    })
     .otherwise({
       redirectTo: '/'
     });

@@ -9,6 +9,7 @@ function AuthCtrl($location, AuthFactory){
   vm.credentials = {};
 
   vm.login = function(credentials){
+    debugger;
     AuthFactory.login(credentials).then(function(response){
       vm.credentials = {};
       $location.path('');

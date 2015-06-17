@@ -26,10 +26,8 @@ angular
     };
 
     var logout = function(){
-      return $http.get('http://localhost:3000/logout').success(function(response){
-        $window.localStorage.removeItem('gl-user-token');
-        $location.path('sign-up');
-      });
+      $window.localStorage.removeItem('gl-user-token');
+      $location.path('/login');
     };
 
      var isLoggedIn = function(){

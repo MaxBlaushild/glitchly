@@ -14,6 +14,12 @@ angular.module('frontendApp').config(['$routeProvider', function($routeProvider)
     .when('/pictures', {
       templateUrl: 'views/picture-show-view.html'
     })
+    .when('/discover', {
+      templateUrl: 'views/discover-view.html'
+    })
+    .when('/glitch-a-pic', {
+      templateUrl: 'views/new-picture-view.html'
+    })
     .otherwise({
       redirectTo: '/'
     });

@@ -9,7 +9,6 @@ function AuthCtrl($location, AuthFactory){
   vm.credentials = {};
 
   vm.login = function(credentials){
-    debugger;
     AuthFactory.login(credentials).then(function(response){
       vm.credentials = {};
       $location.path('');
@@ -19,4 +18,8 @@ function AuthCtrl($location, AuthFactory){
   vm.logout = function(){
     AuthFactory.logout();
   };
+
+  vm.isLoggedIn = function(){
+    return AuthFactory.isLoggedIn();
+  }
 }

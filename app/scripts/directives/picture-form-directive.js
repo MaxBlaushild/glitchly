@@ -2,13 +2,13 @@
 
 angular
     .module('MainDirective')
-    .directive('glPictureList', glPictureList);
+    .directive('glPictureForm', glPictureForm);
 
 
-function glPictureList() {
+function glPictureForm() {
     return {
         restrict: 'E',
-        templateUrl: 'views/picture-list.html',
+        templateUrl: 'views/picture-form.html',
         controller: PictureCtrl,
         controllerAs: 'PictureCtrl',
         bindToController: true

@@ -4,9 +4,9 @@
         .module('frontendApp')
         .factory('PictureFactory', PictureFactory);
 
-    PictureFactory.$inject = ['$http', '$window', '$location'];
+    PictureFactory.$inject = ['$http', '$upload', '$window', '$location'];
 
-    function PictureFactory($http, $window, $location) {
+    function PictureFactory($http, $upload, $window,  $location) {
         var picture = {};
         var pictures = [];
 
@@ -16,7 +16,6 @@
         }
 
         function getFeed(id) {
-
             return $http.get('http://localhost:3000')
                 .then(function(response) {
                     angular.copy(response.data.pictures, pictures);
@@ -33,7 +32,21 @@
         function getPictures(id) {
             return $http.get('http://localhost:3000/pictures')
                 .then(function(response) {
-                    angular.copy(response.data, pictures);
+                    angular.copy(response.data.pictures, pictures);
+            });
+        }
+
+        function createPicture(picture) {
+            var file = picture.image;
+            return $upload.upload({
+                url: 'http://localhost:3000/pictures',
+                method: 'POST',
+                fields: { 'picture[caption]': picture.caption },
+                file: file,
+                fileFormDataName: 'picture[image]'
+            }).then(function(response){
+                $location.path('/pictures');
+                $location.hash(response.data.picture.id);
             });
         }
 
@@ -50,6 +63,7 @@
             pictures: pictures,
             getFeed: getFeed,
             setPicture: setPicture,
+            createPicture: createPicture,
             getPictures: getPictures,
             getPicture: getPicture
         };

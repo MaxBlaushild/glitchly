@@ -1,8 +1,8 @@
 <div ng-repeat="picture in PictureCtrl.pictures">
   <div class ="grid-picture">
-    <img src="{{picture.medium_url}}"/>
+    <img ng-src="{{picture.medium_url}}"/>
     <div class="word-wrap">
-      <h1><a href="#/pictures#{{picture.id}}">{{ picture.caption }}</a></h1>
+      <h1><a href="#/pictures/{{picture.id}}">{{ picture.caption }}</a></h1>
     </div>
   </div>
 </div>

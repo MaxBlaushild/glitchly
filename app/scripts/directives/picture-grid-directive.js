@@ -11,7 +11,10 @@
             templateUrl: 'views/picture-grid.html',
             controller: PictureCtrl,
             controllerAs: 'PictureCtrl',
-            bindToController: true
+            bindToController: true,
+            link: function(scope){
+                scope.PictureCtrl.showPictures();
+            }
         };
     };
 

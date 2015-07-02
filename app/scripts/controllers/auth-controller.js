@@ -7,6 +7,7 @@ AuthCtrl.$inject = ['$location', 'AuthFactory'];
 function AuthCtrl($location, AuthFactory){
   var vm = this;
   vm.credentials = {};
+  vm.currentUser = {};
 
   vm.login = function(credentials){
     AuthFactory.login(credentials).then(function(response){

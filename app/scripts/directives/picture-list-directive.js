@@ -11,7 +11,10 @@ function glPictureList() {
         templateUrl: 'views/picture-list.html',
         controller: PictureCtrl,
         controllerAs: 'PictureCtrl',
-        bindToController: true
+        bindToController: true,
+        link: function (scope, element) {
+          scope.PictureCtrl.showFeed();
+        }
     };
 };
 

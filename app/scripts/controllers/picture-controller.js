@@ -2,12 +2,13 @@
 angular.module('MainController').controller('PictureCtrl', PictureCtrl);
 
 
-PictureCtrl.$inject = ['$location', 'PictureFactory'];
+PictureCtrl.$inject = ['$routeParams','$location', 'PictureFactory'];
 
-function PictureCtrl($location, PictureFactory){
+function PictureCtrl($routeParams, $location, PictureFactory){
   var vm = this;
   vm.picture = PictureFactory.picture;
   vm.pictures = PictureFactory.pictures;
+  vm.pictureId = $routeParams.pictureId;
 
   vm.createPicture = function(picture) {
     PictureFactory.createPicture(picture).then(function() {
@@ -21,20 +22,20 @@ function PictureCtrl($location, PictureFactory){
 
   vm.showPictures = function(){
       PictureFactory.getPictures();
-  }
+  };
 
   vm.showFeed = function(){
       PictureFactory.getFeed();
-  }
+  };
 
   vm.showPicture = function(){
-      PictureFactory.getPicture();
-  }
+      PictureFactory.getPicture(vm.pictureId);
+  };
 
   function resetForm() {
       PictureFactory.setPicture({});
       vm.serverErrors = false;
-  }
+  };
 
   vm.cancel = function() {
       resetForm();
@@ -48,5 +49,5 @@ function PictureCtrl($location, PictureFactory){
       });
 
       return errString;
-  }
-}
+  };
+};

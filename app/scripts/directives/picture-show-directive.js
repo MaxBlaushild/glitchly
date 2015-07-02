@@ -11,7 +11,10 @@ function glPictureShow() {
         templateUrl: 'views/picture-show.html',
         controller: PictureCtrl,
         controllerAs: 'PictureCtrl',
-        bindToController: true
+        bindToController: true,
+        link: function(scope, element, attr){
+          scope.PictureCtrl.showPicture();
+        }
     };
 };
 

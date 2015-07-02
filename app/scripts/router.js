@@ -11,7 +11,7 @@ angular.module('frontendApp').config(['$routeProvider', function($routeProvider)
     .when('/sign-up', {
       templateUrl: 'views/sign-up-view.html'
     })
-    .when('/pictures', {
+    .when('/pictures/:pictureId', {
       templateUrl: 'views/picture-show-view.html'
     })
     .when('/discover', {
@@ -19,6 +19,12 @@ angular.module('frontendApp').config(['$routeProvider', function($routeProvider)
     })
     .when('/glitch-a-pic', {
       templateUrl: 'views/new-picture-view.html'
+    })
+    .when('/users', {
+      templateUrl: 'views/user-list-view.html'
+    })
+    .when('/user/:userId', {
+      templateUrl: 'views/user-show-view.html'
     })
     .otherwise({
       redirectTo: '/'

@@ -8,8 +8,8 @@ angular.module('MainDirective').directive('glNavBar', glNavBar);
     return {
       restrict: 'E',
       templateUrl: 'views/navbar.html',
-      controller: AuthCtrl,
-      controllerAs: 'AuthCtrl',
+      controller: NavbarCtrl,
+      controllerAs: 'NavbarCtrl',
       bindToController: true
     };
   }

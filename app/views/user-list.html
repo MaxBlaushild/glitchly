@@ -1,0 +1,9 @@
+<h1>Howdy doodee</h1>
+<div ng-repeat="user in UserCtrl.users" class ="user-show">
+  <img ng-src="{{user.profile_url}}"/>
+  <div class="word-wrap">
+    <h1>{{ user.username}}</h1>
+    <p>{{ user.bio}}</p>
+  </div>
+</div>
+

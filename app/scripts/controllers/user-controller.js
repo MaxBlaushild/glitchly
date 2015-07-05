@@ -5,10 +5,11 @@ UserCtrl.$inject = ['$routeParams','UserFactory'];
 
 function UserCtrl($routeParams, UserFactory) {
         var vm = this;
+        var userId = $routeParams.userId;
         vm.users = UserFactory.users;
         vm.user = UserFactory.user;
         vm.search = UserFactory.search;
-        vm.userId = $routeParams.userId;
+
 
         vm.upsertUser = function(user) {
             UserFactory.upsertUser(user).then(function() {
@@ -24,7 +25,7 @@ function UserCtrl($routeParams, UserFactory) {
         };
 
         vm.showUser = function(){
-          UserFactory.getUser(vm.userId);
+          UserFactory.getUser(userId);
         };
 
         vm.showUsers = function(search){

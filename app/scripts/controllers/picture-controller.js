@@ -6,9 +6,10 @@ PictureCtrl.$inject = ['$routeParams','$location', 'PictureFactory'];
 
 function PictureCtrl($routeParams, $location, PictureFactory){
   var vm = this;
+  var pictureId = $routeParams.pictureId;
   vm.picture = PictureFactory.picture;
   vm.pictures = PictureFactory.pictures;
-  vm.pictureId = $routeParams.pictureId;
+
 
   vm.createPicture = function(picture) {
     PictureFactory.createPicture(picture).then(function() {
@@ -29,7 +30,7 @@ function PictureCtrl($routeParams, $location, PictureFactory){
   };
 
   vm.showPicture = function(){
-      PictureFactory.getPicture(vm.pictureId);
+      PictureFactory.getPicture(pictureId);
   };
 
   function resetForm() {

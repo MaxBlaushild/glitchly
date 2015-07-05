@@ -23,7 +23,7 @@ angular.module('frontendApp').config(['$routeProvider', function($routeProvider)
     .when('/users', {
       templateUrl: 'views/user-list-view.html'
     })
-    .when('/user/:userId', {
+    .when('/users/:userId', {
       templateUrl: 'views/user-show-view.html'
     })
     .otherwise({

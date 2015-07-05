@@ -43,7 +43,7 @@
         };
 
         function getUsers(search) {
-            return $http.get('http://localhost:3000/users?search=' + search)
+            return $http.get('http://localhost:3000/users?username=' + search)
                 .then(function(response) {
                     angular.copy(response.data.users, users);
                 });

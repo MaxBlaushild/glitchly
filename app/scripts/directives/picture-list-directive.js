@@ -13,7 +13,8 @@ function glPictureList() {
         controllerAs: 'PictureCtrl',
         bindToController: true,
         link: function (scope, element) {
-          scope.PictureCtrl.showFeed();
+            scope.PictureCtrl.showFeed();
+
         }
     };
 };

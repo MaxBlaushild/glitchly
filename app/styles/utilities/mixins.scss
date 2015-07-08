@@ -1,0 +1,50 @@
+//text shadow mixin
+
+@function stroke($stroke, $color) {
+  $shadow: ();
+  $from: $stroke*-1;
+  @for $i from $from through $stroke {
+   @for $j from $from through $stroke {
+      $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
+    }
+  }
+  @return $shadow;
+}
+
+@mixin stroke($stroke, $color) {
+  text-shadow: stroke($stroke, $color);
+}
+
+@mixin glitch-button {
+  font-family: $main-text;
+  color: $blue;
+  border: 3px solid $blue;
+  background-color: white;
+  padding: 3px 10px 3px 10px;
+
+}
+
+@mixin glitch-form {
+  color: $blue;
+  border: 3px solid $blue;
+  padding: 10px;
+  font-family: $main-text;
+}
+
+@mixin placeholder-change($color){
+  input::-webkit-input-placeholder {
+    color: $color;
+  };
+  input:-moz-placeholder {
+    color: $color;
+    opacity:  1;
+  };
+  input::-moz-placeholder {
+    color: $color;
+    opacity:  1;
+  };
+  input:-ms-input-placeholder {
+    color: $color;
+  };
+}
+

@@ -1,0 +1,24 @@
+.feed {
+
+  // @for $i from 1 through 100 {
+  //   #picture-#{$i} {
+  //     position: absolute;
+  //     top: random(500) + px;
+  //     left: random(1000) + px;
+  //     right: random(1000) + px;
+  //     bottom: random(1000) + px;
+  //     z-index: $i;
+
+  //     img {
+  //       height: 200px;
+  //       width: 200px;
+  //     }
+  //   }
+  // }
+
+  .picture {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+  }
+}

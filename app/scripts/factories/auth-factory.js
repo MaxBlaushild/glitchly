@@ -7,25 +7,25 @@ angular
   AuthFactory.$inject = ['$http', '$location', '$window'];
 
    function AuthFactory($http, $location, $window) {
-    var profile = {};
+    var currentUser = {};
 
     function getProfile() {
-      var id = $window.localStorage.getItem('tl-user-id');
-      return $http.get('http://localhost:3000/users/' + id)
+      return $http.get('http://localhost:3000/refresh-navbar')
         .success(function(response) {
-          angular.copy(response, profile);
+          angular.copy(response.user, currentUser);
       });
     };
 
     var login = function(credentials){
       return $http.post('http://localhost:3000/login', credentials).success(function(response){
-        $window.localStorage.setItem('gl-user-token', response.token);
-        $http.defaults.headers.common.Authorization = 'Token token=' + response.token;
+        angular.copy(response.user, currentUser);
+        $window.localStorage.setItem('gl-user-token', response.user.token);
+        $http.defaults.headers.common.Authorization = 'Token token=' + response.user.token;
         $location.path('');
       });
     };
 
-    var logout = function(){
+    var logOut = function(){
       $window.localStorage.removeItem('gl-user-token');
       $location.path('/login');
     };
@@ -41,9 +41,9 @@ angular
 
     return {
       login: login,
-      logout: logout,
-      profile: profile,
+      logOut: logOut,
       getProfile: getProfile,
+      currentUser: currentUser,
       isLoggedIn: isLoggedIn
     };
 

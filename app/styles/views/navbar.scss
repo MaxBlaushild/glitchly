@@ -1,0 +1,27 @@
+#customnavbar {
+  background-color: $orange;
+  color: white;
+
+  #brand-hero {
+    font-family: $super-text;
+    font-weight: bold;
+    font-size: 36px;
+    color: white;
+    @include stroke(2, $blue);
+  }
+
+  input {
+    @include glitch-form;
+  }
+
+  @include placeholder-change($blue);
+
+  button {
+    @include glitch-button;
+  }
+
+  li > a {
+    color: white;
+    font-size: 24px;
+  }
+}

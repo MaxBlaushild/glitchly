@@ -1,9 +1,21 @@
-<h1 ng-if="PictureCtrl.pictures.length === 0">You don't have any pictures yet!</h1>
-<div ng-repeat="picture in PictureCtrl.pictures">
-  <div class="picture">
-    <img ng-src="{{picture.large_url}}"/>
-    <div class="word-wrap">
-      <h1><a href="#/pictures/{{picture.id}}">{{ picture.caption }}</a></h1>
+<div class="row feed">
+  <h1 ng-if="PictureCtrl.pictures.length === 0">You don't have any pictures yet!</h1>
+  <div ng-repeat="picture in PictureCtrl.pictures" >
+    <div id="picture-{{picture.id}}" >
+      <a href="#/pictures/{{picture.id}}">
+        <img class="picture" ng-src="{{picture.large_url}}" gl-cloud-picture />
+      </a>
+<!--       <div class="media">
+          <div class="media-left">
+            <a href="#/users/{{picture.user.id}}">
+              <img class="media-object" ng-src="{{picture.user.thumb_url}}"/>
+            </a>
+          </div>
+          <div class="media-body">
+            <a href="#/users/{{picture.user.id}}"><h4>{{ picture.user.username}}</h4></a>
+            <p>{{ picture.caption}}</p>
+          </div>
+      </div> -->
     </div>
   </div>
 </div>

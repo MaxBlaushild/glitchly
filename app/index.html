@@ -21,7 +21,9 @@
 
     <!-- Add your site or application content here -->
     <gl-nav-bar></gl-nav-bar>
-    <ng-view></ng-view>
+    <div class="container">
+        <ng-view></ng-view>
+    </div>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -35,6 +37,7 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
+    <script src="bower_components/threejs/build/three.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -66,6 +69,11 @@
         <script src="scripts/directives/navbar-directive.js"></script>
         <script src="scripts/directives/user-show-directive.js"></script>
         <script src="scripts/directives/user-list-directive.js"></script>
+        <script src="scripts/directives/cloud-picture-directive.js"></script>
+
+        <!--- non-angular -->
+        <script src="scripts/background-animation.js"></script>
+        <script src="scripts/positioning.js"></script>
 
         <!-- endbuild -->
 </body>

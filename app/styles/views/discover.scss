@@ -1,0 +1,13 @@
+#discover-hero {
+  font-size: 72px;
+  @include super-center();
+}
+
+.cloud {
+
+  .picture {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+  }
+}

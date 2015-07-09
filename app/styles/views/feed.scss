@@ -1,24 +1,13 @@
 .feed {
 
-  // @for $i from 1 through 100 {
-  //   #picture-#{$i} {
-  //     position: absolute;
-  //     top: random(500) + px;
-  //     left: random(1000) + px;
-  //     right: random(1000) + px;
-  //     bottom: random(1000) + px;
-  //     z-index: $i;
-
-  //     img {
-  //       height: 200px;
-  //       width: 200px;
-  //     }
-  //   }
-  // }
-
   .picture {
-    position: absolute;
-    height: 200px;
-    width: 200px;
+    margin-top: 40px;
+    padding-top: 10px;
+    background-color: rgba(6, 82, 255, .5);
+    width: 510px;
+
+    .media {
+      padding-left: 10px;
+    }
   }
 }

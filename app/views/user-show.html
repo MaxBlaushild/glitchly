@@ -1,9 +1,16 @@
-<h1>Howdy doodee</h1>
-<div class ="user-show">
-  <img ng-src="{{UserCtrl.user.profile_url}}"/>
-  <div class="word-wrap">
-    <h1>{{ UserCtrl.user.username}}</h1>
-    <p>{{ UserCtrl.user.bio}}</p>
+<div class="row">
+  <div class ="user-show">
+    <div class="media">
+      <div class="media-left">
+        <img ng-src="{{UserCtrl.user.profile_url}}"/>
+      </div>
+      <div class="media-body">
+        <h1>{{ UserCtrl.user.username}}</h1>
+        <p>{{ UserCtrl.user.bio}}</p>
+      </div>
+    </div>
   </div>
 </div>
-
+<div class="row grid">
+  <img ng-repeat="picture in UserCtrl.user.pictures"class="picture" data-id="{{picture.id}}" ng-src="https://s3.amazonaws.com/testbucketfoshosies/large/{{picture.id}}/{{picture.image_file_name}}" />
+</div>

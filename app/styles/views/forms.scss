@@ -1,0 +1,22 @@
+#form {
+
+  h1 {
+    font-size: 72px;
+  }
+
+  label {
+    color: $blue;
+    font-family: $main-text;
+    font-size: 36px;
+  }
+
+  input {
+    @include glitch-form;
+  }
+
+  @include placeholder-change($blue);
+
+  button {
+    @include glitch-button;
+  }
+}

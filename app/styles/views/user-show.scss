@@ -1,0 +1,19 @@
+html, body {
+  overflow-x: hidden;
+}
+
+.user-show {
+  position: relative;
+  padding: 25px;
+  background-color: $blue-steel-clear;
+  z-index: 9999;
+}
+
+.grid {
+  margin-top: 30px;
+  .picture {
+    display: inline-block;
+    width: 195px;
+    height: 195px;
+  }
+}

@@ -5,29 +5,33 @@ angular
     .directive('glCloudPicture', glCloudPicture);
 
 
-function glCloudPicture() {
+function glCloudPicture($location) {
   return function (scope, element) {
-    var startX = getRandomInt(-100,600), startY = getRandomInt(-100,600), x = 0, y = 0;
+    var startX = getRandomInt(100,1400);
+    var startY = getRandomInt(100,600);
+    var x = 0;
+    var y = 0;
 
     element.css({
-      'top' : startX,
-      // 'bottom' : getRandomInt(-100,600),
-      'left' : startY,
-      // 'right' : getRandomInt(-100,600)
+      top : startY,
+      left : startX
+    });
+
+    element.on('dblclick', function(event){
+      scope.$apply(function() {
+        $location.path('/pictures/' + element.data("id"));
+      });
     });
 
     element.on('mousedown', function(event) {
-        // Prevent default dragging of selected content
         event.preventDefault();
-        startX = event.pageX - x;
-        startY = event.pageY - y;
         $(document).on('mousemove', mousemove);
         $(document).on('mouseup', mouseup);
       });
 
       function mousemove(event) {
-        y = event.pageY - startY;
-        x = event.pageX - startX;
+        y = event.pageY;
+        x = event.pageX;
         element.css({
           top: y + 'px',
           left:  x + 'px'

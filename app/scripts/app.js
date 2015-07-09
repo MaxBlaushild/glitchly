@@ -16,8 +16,6 @@ angular
     if(AuthFactory.isLoggedIn()){
       var data = $window.localStorage.getItem('gl-user-token');
       $http.defaults.headers.common.Authorization = 'Token token=' + data;
-    } else {
-      $location.path('/login');
     }
   });
 

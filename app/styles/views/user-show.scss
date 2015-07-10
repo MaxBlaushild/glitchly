@@ -7,6 +7,11 @@ html, body {
   padding: 25px;
   background-color: $blue-steel-clear;
   z-index: 9999;
+
+  button {
+    float: left;
+    @include glitch-button();
+  }
 }
 
 .grid {

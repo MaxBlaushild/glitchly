@@ -49,6 +49,20 @@
                 });
         };
 
+        function followUser(id){
+            return $http.get('http://localhost:3000/users/' + id + '/follow')
+                .then(function(response) {
+                    angular.copy(response.data.user, user);
+                });
+        };
+
+        function unfollowUser(id){
+            return $http.get('http://localhost:3000/users/' + id + '/unfollow')
+                .then(function(response) {
+                    angular.copy(response.data.user, user);
+                });
+        };
+
         function upsertUser(user) {
             var params = {
                 auth: user
@@ -91,6 +105,8 @@
             getProfile: getProfile,
             getUsers: getUsers,
             deleteUser: deleteUser,
+            followUser: followUser,
+            unfollowUser: unfollowUser,
             upsertUser: upsertUser
         };
     };

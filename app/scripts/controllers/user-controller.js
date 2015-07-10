@@ -24,6 +24,15 @@ function UserCtrl($routeParams, UserFactory) {
           UserFactory.getProfile();
         };
 
+        vm.followUser = function(id){
+            UserFactory.followUser(id);
+
+        };
+
+        vm.unfollowUser = function(id){
+            UserFactory.unfollowUser(id);
+        };
+
         vm.showUser = function(){
           UserFactory.getUser(userId);
         };

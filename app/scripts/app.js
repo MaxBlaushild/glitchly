@@ -12,11 +12,18 @@ angular
     'MainController',
     'MainDirective'
   ])
-  .run(function($http, $window, $location, AuthFactory) {
+  .run(function($rootScope, $http, $window, $location, $routeParams, AuthFactory, UserFactory) {
     if(AuthFactory.isLoggedIn()){
       var data = $window.localStorage.getItem('gl-user-token');
       $http.defaults.headers.common.Authorization = 'Token token=' + data;
     }
+
+    $rootScope.$on('$routeChangeStart', function(){
+      if ($location.path() === '/users') {
+        UserFactory.getUsers($location.search().username);
+      }
+    });
+
   });
 
 

@@ -21,7 +21,8 @@ angular.module('frontendApp').config(['$routeProvider', function($routeProvider)
       templateUrl: 'views/new-picture-view.html'
     })
     .when('/users', {
-      templateUrl: 'views/user-list-view.html'
+      templateUrl: 'views/user-list-view.html',
+      reloadOnSearch: false
     })
     .when('/users/:userId', {
       templateUrl: 'views/user-show-view.html'

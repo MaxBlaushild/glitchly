@@ -44,7 +44,7 @@ function UserCtrl($routeParams, UserFactory, AuthFactory) {
           UserFactory.getUser(userId);
         };
 
-        vm.showUsers = function(search){
+        vm.searchUsers = function(){
             UserFactory.getUsers(search);
         };
 

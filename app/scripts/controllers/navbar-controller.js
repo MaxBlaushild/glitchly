@@ -20,6 +20,7 @@ function NavbarCtrl($location, UserFactory, AuthFactory){
   vm.searchUsers = function(searchString){
     UserFactory.getUsers(searchString).then(function(response){
       $location.path('/users');
+      $location.search('username', searchString);
       vm.searchString = '';
     });
   };

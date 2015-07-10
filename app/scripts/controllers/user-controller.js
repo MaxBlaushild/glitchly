@@ -1,9 +1,9 @@
 'use strict';
 angular.module('MainController').controller('UserCtrl', UserCtrl);
 
-UserCtrl.$inject = ['$routeParams','UserFactory'];
+UserCtrl.$inject = ['$routeParams','UserFactory', 'AuthFactory'];
 
-function UserCtrl($routeParams, UserFactory) {
+function UserCtrl($routeParams, UserFactory, AuthFactory) {
         var vm = this;
         var userId = $routeParams.userId;
         vm.users = UserFactory.users;
@@ -26,7 +26,14 @@ function UserCtrl($routeParams, UserFactory) {
 
         vm.followUser = function(id){
             UserFactory.followUser(id);
+        };
 
+        vm.isCurrentUser = function(id){
+            if (AuthFactory.currentUser.id === id) {
+                return true;
+            } else {
+                return false;
+            }
         };
 
         vm.unfollowUser = function(id){

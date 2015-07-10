@@ -1,14 +1,22 @@
-<ul class="media-list">
-  <li ng-repeat="user in UserCtrl.users" >
-    <div class="media-left">
-      <a href="/users/#{{user.id}}">
-        <img class="media-object" ng-src="{{user.thumb_url}}"/>
-      </a>
+<h1 ng-hide="UserCtrl.users.length > 0">No Users found</h1>
+<div ng-repeat="user in UserCtrl.users" style="margin-bottom: 20px;" class="row">
+  <div class ="user-show">
+    <div class="media">
+      <div class="media-left">
+        <img ng-src="{{user.profile_url}}"/>
+      </div>
+      <div class="media-body">
+        <h1>{{ user.username}}</h1>
+        <p>{{ user.bio}}</p>
+        <ng-switch on="user.followed_by_user" ng-hide="UserCtrl.isCurrentUser(user.id)">
+          <div ng-switch-when="true">
+            <button ng-click="UserCtrl.unfollowUser(user.id)">Unfollow</button>
+          </div>
+          <div ng-switch-default>
+            <button ng-click="UserCtrl.followUser(user.id)">Follow</button>
+          </div>
+        </ng-switch>
+      </div>
     </div>
-    <div class="media-body">
-      <h4>{{ user.username}}</h4>
-      <p>{{ user.bio}}</p>
-    </div>
-  </li>
-</ul>
-
+  </div>
+</div>

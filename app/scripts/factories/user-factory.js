@@ -53,6 +53,9 @@
             return $http.get('http://localhost:3000/users/' + id + '/follow')
                 .then(function(response) {
                     angular.copy(response.data.user, user);
+                    if (users.length > 0 ){
+                        users[findUserIndexById(id)] = response.data.user;
+                    }
                 });
         };
 
@@ -60,6 +63,9 @@
             return $http.get('http://localhost:3000/users/' + id + '/unfollow')
                 .then(function(response) {
                     angular.copy(response.data.user, user);
+                    if (users.length > 0 ){
+                        users[findUserIndexById(id)] = response.data.user;
+                    }
                 });
         };
 

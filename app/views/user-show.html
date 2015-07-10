@@ -7,7 +7,7 @@
       <div class="media-body">
         <h1>{{ UserCtrl.user.username}}</h1>
         <p>{{ UserCtrl.user.bio}}</p>
-        <ng-switch on="UserCtrl.user.followed_by_user">
+        <ng-switch on="UserCtrl.user.followed_by_user" ng-hide="UserCtrl.isCurrentUser(UserCtrl.user.id)">
           <div ng-switch-when="true">
             <button ng-click="UserCtrl.unfollowUser(UserCtrl.user.id)">Unfollow</button>
           </div>

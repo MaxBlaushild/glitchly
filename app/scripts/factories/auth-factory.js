@@ -10,14 +10,14 @@ angular
     var currentUser = {};
 
     function getProfile() {
-      return $http.get('http://localhost:3000/refresh-navbar')
+      return $http.get('https://desolate-gorge-7593.herokuapp.com/refresh-navbar')
         .success(function(response) {
           angular.copy(response.user, currentUser);
       });
     };
 
     var login = function(credentials){
-      return $http.post('http://localhost:3000/login', credentials).success(function(response){
+      return $http.post('https://desolate-gorge-7593.herokuapp.com/login', credentials).success(function(response){
         angular.copy(response.user, currentUser);
         $window.localStorage.setItem('gl-user-token', response.user.token);
         $http.defaults.headers.common.Authorization = 'Token token=' + response.user.token;

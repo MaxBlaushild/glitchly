@@ -16,7 +16,7 @@
         };
 
         function getUser(id) {
-            return $http.get('http://localhost:3000/users/' + id)
+            return $http.get('https://desolate-gorge-7593.herokuapp.com/users/' + id)
                 .then(function(response) {
                     angular.copy(response.data.user, user);
                 });
@@ -36,21 +36,21 @@
 
         function getProfile() {
             var id = $window.localStorage.getItem('gl-user-id');
-            return $http.get('http://localhost:3000/users/' + id)
+            return $http.get('https://desolate-gorge-7593.herokuapp.com/users/' + id)
                 .then(function(response) {
                     angular.copy(response.data, user);
                 });
         };
 
         function getUsers(search) {
-            return $http.get('http://localhost:3000/users?username=' + search)
+            return $http.get('https://desolate-gorge-7593.herokuapp.com/users?username=' + search)
                 .then(function(response) {
                     angular.copy(response.data.users, users);
                 });
         };
 
         function followUser(id){
-            return $http.get('http://localhost:3000/users/' + id + '/follow')
+            return $http.get('https://desolate-gorge-7593.herokuapp.com/users/' + id + '/follow')
                 .then(function(response) {
                     angular.copy(response.data.user, user);
                     if (users.length > 0 ){
@@ -60,7 +60,7 @@
         };
 
         function unfollowUser(id){
-            return $http.get('http://localhost:3000/users/' + id + '/unfollow')
+            return $http.get('https://desolate-gorge-7593.herokuapp.com/users/' + id + '/unfollow')
                 .then(function(response) {
                     angular.copy(response.data.user, user);
                     if (users.length > 0 ){
@@ -74,12 +74,12 @@
                 auth: user
             };
             if (user.id) {
-                return $http.put('http://localhost:3000/users' + user.id, params)
+                return $http.put('https://desolate-gorge-7593.herokuapp.com/users' + user.id, params)
                     .success(getUsers);
             } else {
                 var file = user.avatar;
                 return $upload.upload({
-                    url: 'http://localhost:3000/register',
+                    url: 'https://desolate-gorge-7593.herokuapp.com/register',
                     method: 'POST',
                     fields: {
                         'auth[username]': user.username,
@@ -98,7 +98,7 @@
         };
 
         function deleteUser(user) {
-            return $http.delete('http://localhost:3000/users/' + user.id);
+            return $http.delete('https://desolate-gorge-7593.herokuapp.com/users/' + user.id);
         };
 
         return {

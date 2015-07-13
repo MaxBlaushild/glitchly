@@ -7,11 +7,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import url(http://fonts.googleapis.com/css?family=Lobster);
 @import url(http://fonts.googleapis.com/css?family=VT323);
 
-// normalize here
-
-
 // style guide, reset and mixins here
-@import "utilities/normalize.css";
+@import "utilities/normalize.scss";
 @import "utilities/glitchly-style-guide.scss";
 @import "utilities/mixins.scss";
 

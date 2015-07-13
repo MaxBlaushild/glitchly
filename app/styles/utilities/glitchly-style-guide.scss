@@ -5,5 +5,18 @@ $blue: #0652ff;
 $super-text: vt323;
 $main-text: vt323;
 $blue-steel-clear: rgba(6, 82, 255, .5);
+$orange-crush-clear: rgba(255, 102, 0, .5);
 
+// keeps the background animation in the middle fo the page
+#background {
+  z-index:-1;
+  width:100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+};
 
+p, h1, h2, h3, h4, a {
+  color: white;
+  font-family: $main-text;
+};

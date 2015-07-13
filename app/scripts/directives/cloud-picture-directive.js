@@ -7,6 +7,11 @@ angular
 
 function glCloudPicture($location) {
   return function (scope, element) {
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+
     var startX = getRandomInt(100,1400);
     var startY = getRandomInt(100,600);
     var x = 0;

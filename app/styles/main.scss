@@ -8,11 +8,12 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import url(http://fonts.googleapis.com/css?family=VT323);
 
 // normalize here
-@import "normalize.css";
 
-// style guide and mixins here
-@import "utilities/mixins.scss";
+
+// style guide, reset and mixins here
+@import "utilities/normalize.css";
 @import "utilities/glitchly-style-guide.scss";
+@import "utilities/mixins.scss";
 
 
 // views here
@@ -21,22 +22,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "views/discover.scss";
 @import "views/user-show.scss";
 @import "views/forms.scss";
+@import "views/picture-show.scss";
 
-
-
-// keeps the background animation in the middle fo the page
-#background {
-  z-index:-1;
-  width:100%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-};
-
-p, h1, h2, h3, h4, a {
-  color: white;
-  font-family: $main-text;
-};
 
 
 

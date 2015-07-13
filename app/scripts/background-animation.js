@@ -9,7 +9,7 @@ var container, HEIGHT,
   materials = [],
   mouseX = 0,
   mouseY = 0,
-  windowHalfX, windowHalfY, cameraZ, fogHex, fogDensity;
+  windowHalfX, windowHalfY, cameraZ, fogHex, fogDensity, parameters, parameterCount, particles, container;
 
 init();
 animate();

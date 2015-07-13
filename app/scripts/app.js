@@ -21,6 +21,10 @@ angular
     $rootScope.$on('$routeChangeStart', function(){
       if ($location.path() === '/users') {
         UserFactory.getUsers($location.search().username);
+      } else if ($location.path() === '/followers') {
+        UserFactory.getFollowers();
+      } else if ($location.path() === '/following') {
+        UserFactory.getFollowing();
       }
     });
 

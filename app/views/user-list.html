@@ -3,11 +3,17 @@
   <div class ="user-show">
     <div class="media">
       <div class="media-left">
-        <img ng-src="{{user.profile_url}}"/>
+        <a href="#/users/{{user.id}}">
+          <img ng-src="{{user.profile_url}}"/>
+        </a>
       </div>
       <div class="media-body">
-        <h1>{{ user.username}}</h1>
-        <p>{{ user.bio}}</p>
+        <a href="#/users/{{user.id}}">
+          <h1>{{ user.username}}</h1>
+        </a>
+        <a href="#/users/{{user.id}}">
+          <p>{{ user.bio}}</p>
+        </a>
         <ng-switch on="user.followed_by_user" ng-hide="UserCtrl.isCurrentUser(user.id)">
           <div ng-switch-when="true">
             <button ng-click="UserCtrl.unfollowUser(user.id)">Unfollow</button>

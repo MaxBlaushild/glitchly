@@ -15,10 +15,18 @@
             <button ng-click="UserCtrl.followUser(UserCtrl.user.id)">Follow</button>
           </div>
         </ng-switch>
+        <a ng-show="UserCtrl.isCurrentUser(UserCtrl.user.id)" href="#/followers">
+          <button >See Followers</button>
+        </a>
+        <a ng-show="UserCtrl.isCurrentUser(UserCtrl.user.id)" href="#/following">
+          <button >See Followed</button>
+        </a>
       </div>
     </div>
   </div>
 </div>
 <div class="row grid">
-  <img ng-repeat="picture in UserCtrl.user.pictures"class="picture" data-id="{{picture.id}}" ng-src="https://s3.amazonaws.com/testbucketfoshosies/large/{{picture.id}}/{{picture.image_file_name}}" />
+  <a ng-repeat="picture in UserCtrl.user.pictures" href="#/pictures/{{picture.id}}">
+    <img class="picture" data-id="{{picture.id}}" ng-src="https://s3.amazonaws.com/testbucketfoshosies/large/{{picture.id}}/{{picture.image_file_name}}" />
+  </a>
 </div>

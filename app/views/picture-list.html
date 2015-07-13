@@ -13,7 +13,9 @@
           <p>{{ picture.caption}}</p>
         </div>
       </div>
-      <img ng-src="{{picture.large_url}}"/>
+      <a href="#/pictures/{{picture.id}}">
+        <img ng-src="{{picture.large_url}}"/>
+      </a>
     </div>
   </div>
 </div>

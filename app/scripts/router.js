@@ -8,6 +8,12 @@ angular.module('frontendApp').config(['$routeProvider', function($routeProvider)
     .when('/login', {
       templateUrl: 'views/login-page.html'
     })
+    .when('/followers', {
+      templateUrl: 'views/user-list-view.html'
+    })
+    .when('/following', {
+      templateUrl: 'views/user-list-view.html'
+    })
     .when('/sign-up', {
       templateUrl: 'views/sign-up-view.html'
     })
@@ -21,8 +27,7 @@ angular.module('frontendApp').config(['$routeProvider', function($routeProvider)
       templateUrl: 'views/new-picture-view.html'
     })
     .when('/users', {
-      templateUrl: 'views/user-list-view.html',
-      reloadOnSearch: false
+      templateUrl: 'views/user-list-view.html'
     })
     .when('/users/:userId', {
       templateUrl: 'views/user-show-view.html'

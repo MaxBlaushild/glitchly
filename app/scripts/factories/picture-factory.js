@@ -16,21 +16,21 @@
         }
 
         function getFeed(id) {
-            return $http.get('https://desolate-gorge-7593.herokuapp.com')
+            return $http.get('http://localhost:3000')
                 .then(function(response) {
                     angular.copy(response.data.pictures, pictures);
             });
         }
 
         function getPicture(id) {
-            return $http.get('https://desolate-gorge-7593.herokuapp.com/pictures/' + id)
+            return $http.get('http://localhost:3000/pictures/' + id)
                 .then(function(response) {
                     angular.copy(response.data.picture, picture);
             });
         }
 
         function getPictures(id) {
-            return $http.get('https://desolate-gorge-7593.herokuapp.com/pictures')
+            return $http.get('http://localhost:3000/pictures')
                 .then(function(response) {
                     angular.copy(response.data.pictures, pictures);
             });
@@ -39,7 +39,7 @@
         function createPicture(picture) {
             var file = picture.image;
             return $upload.upload({
-                url: 'https://desolate-gorge-7593.herokuapp.com/pictures',
+                url: 'http://localhost:3000/pictures',
                 method: 'POST',
                 fields: { 'picture[caption]': picture.caption },
                 file: file,

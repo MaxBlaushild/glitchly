@@ -12,14 +12,19 @@ function glCloudPicture($location) {
       return Math.floor(Math.random() * (max - min + 1) + min);
     };
 
-    var startX = getRandomInt(100,1400);
-    var startY = getRandomInt(100,600);
+    var vpw = $(window).width();
+    var vph = $(window).height();
+
+    var startX = getRandomInt(0,vpw);
+    var startY = getRandomInt(0,vph);
     var x = 0;
     var y = 0;
 
     element.css({
-      top : startY,
-      left : startX
+      top: startY,
+      left: startX,
+      height: (vph / 5) + 'px',
+      width: (vph / 5) + 'px'
     });
 
     element.on('dblclick', function(event){

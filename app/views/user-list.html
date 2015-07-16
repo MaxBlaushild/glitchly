@@ -1,13 +1,13 @@
 <h1 ng-hide="UserCtrl.users.length > 0">No Users found</h1>
-<div ng-repeat="user in UserCtrl.users" style="margin-bottom: 20px;" class="row">
+<div class="col-12-xs col-md-6" ng-repeat="user in UserCtrl.users" style="margin-bottom: 20px;" class="row">
   <div class ="user-show">
     <div class="media">
       <div class="media-left">
-        <a href="#/users/{{user.id}}">
-          <img ng-src="{{user.profile_url}}"/>
+        <a class="user-pic" href="#/users/{{user.id}}">
+          <img  ng-src="{{user.profile_url}}"/>
         </a>
       </div>
-      <div class="media-body">
+      <div class="media-body media-top">
         <a href="#/users/{{user.id}}">
           <h1>{{ user.username}}</h1>
         </a>

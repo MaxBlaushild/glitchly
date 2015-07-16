@@ -8,6 +8,19 @@ html, body {
   background-color: $blue-steel-clear;
   z-index: 9999;
 
+  img {
+    margin-right: 10px;
+  }
+
+  @media (max-width: 500px) {
+    h1 {
+      font-size: 24px;
+    }
+    img {
+      width: 75px;
+    }
+  }
+
   button {
     float: left;
     @include glitch-button();
@@ -16,9 +29,10 @@ html, body {
 
 .grid {
   margin-top: 30px;
+  text-align: center;
   .picture {
     display: inline-block;
-    width: 195px;
-    height: 195px;
+    width: 190px;
+    height: 190px;
   }
 }

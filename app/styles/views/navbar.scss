@@ -24,4 +24,12 @@
     color: white;
     font-size: 24px;
   }
+
+  @media all and (max-width: 800px) and (min-width: 650px) {
+    li > a {
+      font-size: 18px;
+    }
+  }
+
+
 }

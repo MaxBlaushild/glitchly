@@ -4,6 +4,12 @@
     font-size: 72px;
   }
 
+  @media (max-width: 500px) {
+    h1 {
+      font-size: 48px;
+    }
+  }
+
   label {
     color: $blue;
     font-family: $main-text;

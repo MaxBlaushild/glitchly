@@ -45,8 +45,7 @@
                 file: file,
                 fileFormDataName: 'picture[image]'
             }).then(function(response){
-                $location.path('/pictures');
-                $location.hash(response.data.picture.id);
+                $location.path('/');
             });
         }
 

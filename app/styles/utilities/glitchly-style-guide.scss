@@ -20,3 +20,21 @@ p, h1, h2, h3, h4, a {
   color: white;
   font-family: $main-text;
 };
+
+#heart {
+  width: 54px;
+  height: 54px;
+}
+
+#heart:after {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: transparent;
+  box-shadow:18px 12px white,30px 12px white,12px 18px white,18px 18px white,24px 18px white,30px 18px white,36px 18px white,12px 24px white,18px 24px white,24px 24px white,30px 24px white,36px 24px white,18px 30px white,24px 30px white,30px 30px white,24px 36px white;
+}
+
+.liked#heart:after {
+  box-shadow:18px 12px #f00000,30px 12px #f00000,12px 18px #f00000,18px 18px #f00000,24px 18px #f00000,30px 18px #f00000,36px 18px #f00000,12px 24px #f00000,18px 24px #f00000,24px 24px #f00000,30px 24px #f00000,36px 24px #f00000,18px 30px #f00000,24px 30px #f00000,30px 30px #f00000,24px 36px #f00000;
+}

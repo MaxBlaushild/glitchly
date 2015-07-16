@@ -4,7 +4,11 @@
     margin-top: 40px;
     padding-top: 10px;
     background-color: rgba(6, 82, 255, .5);
-    width: 510px;
+    width: 100%;
+
+    img.feed-img {
+      width:100%;
+    }
 
     .media {
       padding-left: 10px;

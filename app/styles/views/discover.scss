@@ -3,6 +3,12 @@
   @include super-center();
 }
 
+@media (max-width: 500px) {
+  #discover-hero {
+    font-size: 36px;
+  }
+}
+
 .cloud {
 
   .picture {

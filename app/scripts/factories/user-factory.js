@@ -16,7 +16,6 @@
         };
 
         function getUser(id) {
-            debugger;
             return $http.get('http://localhost:3000/users/' + id)
                 .then(function(response) {
                     angular.copy(response.data.user, user);

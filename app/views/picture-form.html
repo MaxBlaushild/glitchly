@@ -10,6 +10,27 @@
                 <label>Caption</label>
                 <input type="text" class="form-control" ng-model="PictureCtrl.picture.caption">
             </div>
+            <div class="checkbox">
+                <label>
+                    <input name="paint" ng-model="PictureCtrl.picture.filters.paint" ng-true-value="'-paint 5 '" ng-false-value="''"type="checkbox"> Paint
+                    <input name="heaven" ng-model="PictureCtrl.picture.filters.heaven" ng-true-value="'-equalize '" ng-false-value="''"type="checkbox"> Heaven
+                    <input name="implode" ng-model="PictureCtrl.picture.filters.implode" ng-true-value="'-implode 1 '" ng-false-value="''"type="checkbox"> Implode
+                    <input name="swirl" ng-model="PictureCtrl.picture.filters.swirl" ng-true-value="'-swirl 100 '" ng-false-value="''"type="checkbox"> Swirl
+                    <input name="swirl" ng-model="PictureCtrl.picture.filters.emboss" ng-true-value="'-emboss 5 '" ng-false-value="''"type="checkbox"> Emboss
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input name="rave" ng-model="PictureCtrl.picture.filters.rave" ng-true-value="'-morphology EdgeIn Octagon '" ng-false-value="''"type="checkbox"> Rave
+                    <input name="tapestry" ng-model="PictureCtrl.picture.filters.tapestry" ng-true-value="'-resize 250x250 -define distort:viewport=1000x1000 -virtual-pixel Mirror -distort SRT 0  +repage '" ng-false-value="''"type="checkbox"> Tapestry
+                    <input name="jordan" ng-model="PictureCtrl.picture.filters.jordan" ng-true-value="'-morphology Thinning:-1 Skeleton  '" ng-false-value="''"type="checkbox"> Jordan
+                    <input name="hammer" ng-model="PictureCtrl.picture.filters.hammer" ng-true-value="'hammer'" ng-false-value="''"type="checkbox"> Hammer (Warning: tempermental)
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Avatar</label>
+                <input type="file"  ng-file-select ng-model="PictureCtrl.picture.image">
+            </div>
             <br>
             <button ng-click='PictureCtrl.createPicture(PictureCtrl.picture)'>Submit</button>
             <button type="reset" class="btn btn-default" ng-click="PictureCtrl.cancel()">Cancel</button>

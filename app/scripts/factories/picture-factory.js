@@ -38,10 +38,17 @@
 
         function createPicture(picture) {
             var file = picture.image;
+            picture.filter = '';
+            $.each(picture.filters, function(key, filter){
+                picture.filter += filter + "#";
+            });
             return $upload.upload({
                 url: 'http://localhost:3000/pictures',
                 method: 'POST',
-                fields: { 'picture[caption]': picture.caption },
+                fields: {
+                    'picture[caption]': picture.caption,
+                    'picture[filter]' : picture.filter
+                },
                 file: file,
                 fileFormDataName: 'picture[image]'
             }).then(function(response){

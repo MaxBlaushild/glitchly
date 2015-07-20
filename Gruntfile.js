@@ -380,6 +380,9 @@ module.exports = function (grunt) {
             'styles/fonts/{,*/}*.*'
           ]
         }, {
+          src: 'CNAME',
+          dest: '<%= yeoman.dist %>/CNAME'
+        }, {
           expand: true,
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',

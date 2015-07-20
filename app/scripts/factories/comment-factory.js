@@ -2,7 +2,7 @@
 
 'use strict';
 
-function CommentFactory($http) {
+function CommentFactory($http, appSettings) {
   var comment = {};
   var comments = [];
 
@@ -11,7 +11,7 @@ function CommentFactory($http) {
       body: body
     }};
 
-    return $http.post('http://localhost:3000/pictures/' + pictureId + '/comments', comment).success(function(response){
+    return $http.post(appSettings.apiUrl + '/pictures/' + pictureId + '/comments', comment).success(function(response){
       angular.copy(response.comment, comment);
     });
   };
@@ -26,6 +26,6 @@ function CommentFactory($http) {
 
 angular.module('frontendApp').factory('CommentFactory', CommentFactory);
 
-CommentFactory.$inject = ['$http'];
+CommentFactory.$inject = ['$http', 'appSettings'];
 
 })();

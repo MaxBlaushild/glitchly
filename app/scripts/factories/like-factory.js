@@ -2,17 +2,17 @@
 
 'use strict';
 
-function LikeFactory($http) {
+function LikeFactory($http, appSettings) {
 
   var like = function(pictureId){
     var like = { like: {  }  };
-    return $http.post('http://localhost:3000/pictures/' + pictureId + '/likes', like).success(function(response){
+    return $http.post(appSettings.apiUrl + '/pictures/' + pictureId + '/likes', like).success(function(response){
       angular.copy(response.like, like);
     });
   };
 
   var unlike = function(pictureId){
-    return $http.delete('http://localhost:3000/pictures/' + pictureId + '/likes').success(function(response){
+    return $http.delete(appSettings.apiUrl + '/pictures/' + pictureId + '/likes').success(function(response){
       angular.copy({}, like);
     });
   };
@@ -27,6 +27,6 @@ function LikeFactory($http) {
 
 angular.module('frontendApp').factory('LikeFactory', LikeFactory);
 
-LikeFactory.$inject = ['$http'];
+LikeFactory.$inject = ['$http', 'appSettings'];
 
 })();

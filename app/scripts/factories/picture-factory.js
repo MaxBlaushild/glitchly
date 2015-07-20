@@ -4,9 +4,9 @@
         .module('frontendApp')
         .factory('PictureFactory', PictureFactory);
 
-    PictureFactory.$inject = ['$http', '$upload', '$window', '$location'];
+    PictureFactory.$inject = ['$http', '$upload', '$window', '$location', 'appSettings'];
 
-    function PictureFactory($http, $upload, $window,  $location) {
+    function PictureFactory($http, $upload, $window,  $location, appSettings) {
         var picture = {};
         picture.sliderFilters = {};
         picture.sliderFilters.paint = 0;
@@ -24,28 +24,28 @@
         };
 
         function getFeed(id) {
-            return $http.get('http://localhost:3000')
+            return $http.get(appSettings.apiUrl)
                 .then(function(response) {
                     angular.copy(response.data.pictures, pictures);
             });
         };
 
         function getPicture(id) {
-            return $http.get('http://localhost:3000/pictures/' + id)
+            return $http.get(appSettings.apiUrl + '/pictures/' + id)
                 .then(function(response) {
                     angular.copy(response.data.picture, picture);
             });
         };
 
         function getPictures(id) {
-            return $http.get('http://localhost:3000/pictures')
+            return $http.get(appSettings.apiUrl + '/pictures')
                 .then(function(response) {
                     angular.copy(response.data.pictures, pictures);
             });
         };
 
         function deletePicture(id){
-            return $http.delete('http://localhost:3000/pictures/' + id).then(function(reponse){
+            return $http.delete(appSettings.apiUrl + '/pictures/' + id).then(function(reponse){
                 $location.path('/new-picture');
             });
         };
@@ -98,7 +98,7 @@
             });
             $location.path('/glitch-in-progress');
             return $upload.upload({
-                url: 'http://localhost:3000/pictures',
+                url: appSettings.apiUrl + '/pictures',
                 method: 'POST',
                 fields: {
                     'picture[caption]': picture.caption,

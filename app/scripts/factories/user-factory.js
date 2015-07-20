@@ -4,9 +4,9 @@
         .module('frontendApp')
         .factory('UserFactory', UserFactory);
 
-    UserFactory.$inject = ['$http', '$window', '$location', '$upload'];
+    UserFactory.$inject = ['$http', '$window', '$location', '$upload', 'appSettings'];
 
-    function UserFactory($http, $window, $location, $upload) {
+    function UserFactory($http, $window, $location, $upload, appSettings) {
         var users = [];
         var user = {};
         var search;
@@ -16,7 +16,7 @@
         };
 
         function getUser(id) {
-            return $http.get('http://localhost:3000/users/' + id)
+            return $http.get(appSettings.apiUrl + '/users/' + id)
                 .then(function(response) {
                     angular.copy(response.data.user, user);
                 });
@@ -36,35 +36,35 @@
 
         function getProfile() {
             var id = $window.localStorage.getItem('gl-user-id');
-            return $http.get('http://localhost:3000/users/' + id)
+            return $http.get(appSettings.apiUrl + '/users/' + id)
                 .then(function(response) {
                     angular.copy(response.data, user);
                 });
         };
 
         function getUsers(search) {
-            return $http.get('http://localhost:3000/users?username=' + search)
+            return $http.get(appSettings.apiUrl + '/users?username=' + search)
                 .then(function(response) {
                     angular.copy(response.data.users, users);
                 });
         };
 
         function getFollowers() {
-            return $http.get('http://localhost:3000/followers')
+            return $http.get(appSettings.apiUrl + '/followers')
                 .then(function(response) {
                     angular.copy(response.data.users, users);
                 });
         };
 
         function getFollowing() {
-            return $http.get('http://localhost:3000/following')
+            return $http.get(appSettings.apiUrl + '/following')
                 .then(function(response) {
                     angular.copy(response.data.users, users);
                 });
         };
 
         function followUser(id){
-            return $http.get('http://localhost:3000/users/' + id + '/follow')
+            return $http.get(appSettings.apiUrl + '/users/' + id + '/follow')
                 .then(function(response) {
                     angular.copy(response.data.user, user);
                     if (users.length > 0 ){
@@ -74,7 +74,7 @@
         };
 
         function unfollowUser(id){
-            return $http.get('http://localhost:3000/users/' + id + '/unfollow')
+            return $http.get(appSettings.apiUrl + '/users/' + id + '/unfollow')
                 .then(function(response) {
                     angular.copy(response.data.user, user);
                     if (users.length > 0 ){
@@ -88,12 +88,12 @@
                 auth: user
             };
             if (user.id) {
-                return $http.put('http://localhost:3000/users' + user.id, params)
+                return $http.put(appSettings.apiUrl + '/users' + user.id, params)
                     .success(getUsers);
             } else {
                 var file = user.avatar;
                 return $upload.upload({
-                    url: 'http://localhost:3000/register',
+                    url: appSettings.apiUrl + '/register',
                     method: 'POST',
                     fields: {
                         'auth[username]': user.username,
@@ -112,7 +112,7 @@
         };
 
         function deleteUser(user) {
-            return $http.delete('http://localhost:3000/users/' + user.id);
+            return $http.delete(appSettings.apiUrl + '/users/' + user.id);
         };
 
         return {

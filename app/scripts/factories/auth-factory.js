@@ -4,20 +4,20 @@ angular
   .module('frontendApp')
   .factory('AuthFactory', AuthFactory);
 
-  AuthFactory.$inject = ['$http', '$location', '$window'];
+  AuthFactory.$inject = ['$http', '$location', '$window', 'appSettings'];
 
-   function AuthFactory($http, $location, $window) {
+   function AuthFactory($http, $location, $window, appSettings) {
     var currentUser = {};
 
     function getProfile() {
-      return $http.get('http://localhost:3000/refresh-navbar')
+      return $http.get(appSettings.apiUrl + '/refresh-navbar')
         .success(function(response) {
           angular.copy(response.user, currentUser);
       });
     };
 
     var login = function(credentials){
-      return $http.post('http://localhost:3000/login', credentials).success(function(response){
+      return $http.post(appSettings.apiUrl + '/login', credentials).success(function(response){
         angular.copy(response.user, currentUser);
         $window.localStorage.setItem('gl-user-token', response.user.token);
         $http.defaults.headers.common.Authorization = 'Token token=' + response.user.token;

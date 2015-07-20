@@ -12,7 +12,7 @@ angular
     'MainController',
     'MainDirective'
   ])
-  .run(function($rootScope, $http, $window, $location, $routeParams, AuthFactory, UserFactory) {
+  .run(function($rootScope, $http, $window, $location, $routeParams, AuthFactory, UserFactory, PictureFactory) {
     if(AuthFactory.isLoggedIn()){
       var data = $window.localStorage.getItem('gl-user-token');
       $http.defaults.headers.common.Authorization = 'Token token=' + data;

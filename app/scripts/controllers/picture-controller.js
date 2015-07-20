@@ -52,7 +52,11 @@ function PictureCtrl($routeParams, $location, PictureFactory, CommentFactory, Li
     (likedByUser ? LikeFactory.unlike(id) : LikeFactory.like(id)).then(function(response){
       switchLikeStatus(id, lessLikes);
     })
-  }
+  };
+
+  vm.deletePicture = function(){
+    PictureFactory.deletePicture(pictureId);
+  };
 
 
   vm.showPictures = function(){

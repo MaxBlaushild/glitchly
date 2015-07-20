@@ -32,6 +32,14 @@ angular.module('frontendApp').config(['$routeProvider', function($routeProvider)
     .when('/users/:userId', {
       templateUrl: 'views/user-show-view.html'
     })
+    .when('/glitch-in-progress', {
+      templateUrl: 'views/glitch-in-progress-view.html'
+    })
+    .when('/preview/:pictureId', {
+      templateUrl: 'views/preview-view.html',
+      controller: PictureCtrl,
+      controllerAs: 'PictureCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });

@@ -35,6 +35,9 @@ angular.module('frontendApp').config(['$routeProvider', function($routeProvider)
     .when('/glitch-in-progress', {
       templateUrl: 'views/glitch-in-progress-view.html'
     })
+    .when('/glitch-error', {
+      templateUrl: 'views/glitch-timeout-view.html'
+    })
     .when('/preview/:pictureId', {
       templateUrl: 'views/preview-view.html',
       controller: PictureCtrl,

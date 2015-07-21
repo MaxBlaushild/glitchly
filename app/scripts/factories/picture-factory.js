@@ -58,44 +58,46 @@
                     picture.filter += filter;
                 });
             }
-            $.each(picture.sliderFilters, function(key, filter){
-                if (filter > 0) {
-                    switch (key) {
-                        case "paint":
-                            picture.filter += '-paint ';
-                            picture.filter += filter;
-                            picture.filter += ' ';
-                            break;
-                        case "swirl":
-                            picture.filter += '-swirl ';
-                            picture.filter += filter;
-                            picture.filter += ' ';
-                            break;
-                        case "implode":
-                            picture.filter += '-implode ';
-                            picture.filter += filter;
-                            picture.filter += ' ';
-                            break;
-                        case "posterize":
-                            picture.filter += '-posterize ';
-                            picture.filter += filter;
-                            picture.filter += ' ';
-                            break;
-                        case "powerleak":
-                            picture.filter += '-morphology Thicken:';
-                            picture.filter += filter;
-                            picture.filter += ' "3x1+2+0: 1 0 0 " ';
-                            break;
-                        case "tapestry":
-                            picture.filter += '-resize ';
-                            picture.filter += filter;
-                            picture.filter += 'x';
-                            picture.filter += filter;
-                            picture.filter += ' -define distort:viewport=510x510 -virtual-pixel Mirror -distort SRT 0  +repage ';
-                            break;
-                    };
-                }
-            });
+            if (picture.sliderFilters) {
+                $.each(picture.sliderFilters, function(key, filter){
+                    if (filter > 0) {
+                        switch (key) {
+                            case "paint":
+                                picture.filter += '-paint ';
+                                picture.filter += filter;
+                                picture.filter += ' ';
+                                break;
+                            case "swirl":
+                                picture.filter += '-swirl ';
+                                picture.filter += filter;
+                                picture.filter += ' ';
+                                break;
+                            case "implode":
+                                picture.filter += '-implode ';
+                                picture.filter += filter;
+                                picture.filter += ' ';
+                                break;
+                            case "posterize":
+                                picture.filter += '-posterize ';
+                                picture.filter += filter;
+                                picture.filter += ' ';
+                                break;
+                            case "powerleak":
+                                picture.filter += '-morphology Thicken:';
+                                picture.filter += filter;
+                                picture.filter += ' "3x1+2+0: 1 0 0 " ';
+                                break;
+                            case "tapestry":
+                                picture.filter += '-resize ';
+                                picture.filter += filter;
+                                picture.filter += 'x';
+                                picture.filter += filter;
+                                picture.filter += ' -define distort:viewport=510x510 -virtual-pixel Mirror -distort SRT 0  +repage ';
+                                break;
+                        };
+                    }
+                });
+            }
             $location.path('/glitch-in-progress');
             return $upload.upload({
                 url: appSettings.apiUrl + '/pictures',
@@ -106,8 +108,10 @@
                 },
                 file: file,
                 fileFormDataName: 'picture[image]'
-            }).then(function(response){
-                $location.path('/preview/' + response.data.picture.id);
+            }).success(function(response){
+                $location.path('/preview/' + response.picture.id);
+            }).error(function(data, status){
+                $location.path('/glitch-error');
             });
         };
 

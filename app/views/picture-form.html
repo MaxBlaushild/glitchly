@@ -6,63 +6,10 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 {{ PictureCtrl.serverErrorMsg }}
             </div>
-
+            <canvas id="image-preview" processing-canvas></canvas>
             <div class="form-group">
                 <label>Avatar</label>
-                <input type="file"  ng-file-select ng-model="PictureCtrl.picture.image">
-            </div>
-            <div class="form-group">
-                <label>Paint</label>
-                <input name="paint" ng-model="PictureCtrl.picture.sliderFilters.paint" min="0" max="20" value="20" type="range">
-            </div>
-            <div class="form-group">
-                <label>Swirl</label>
-                <input name="paint" ng-model="PictureCtrl.picture.sliderFilters.swirl" min="0" max="500" value="0" type="range">
-            </div>
-            <div class="form-group">
-                <label>Implode</label>
-                <input name="paint" ng-model="PictureCtrl.picture.sliderFilters.implode" min="0" max="5" value="0" type="range">
-            </div>
-            <div class="form-group">
-                <label>Posterize</label>
-                <input name="paint" ng-model="PictureCtrl.picture.sliderFilters.posterize" min="0" max="6" value="0" type="range">
-            </div>
-            <div class="form-group">
-                <label>Power Leak</label>
-                <input name="paint" ng-model="PictureCtrl.picture.sliderFilters.powerleak" min="0" max="200" value="0" type="range">
-            </div>
-            <div class="form-group">
-                <label>Tapestry</label>
-                <input name="paint" ng-model="PictureCtrl.picture.sliderFilters.tapestry" step="25" min="0" max="275" value="0" type="range">
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input name="rave" ng-model="PictureCtrl.picture.filters.rave" ng-true-value="'-morphology EdgeIn Octagon '" ng-false-value="''"type="checkbox"> Rave
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input name="vein" ng-model="PictureCtrl.picture.filters.vein" ng-true-value="'-morphology Thinning:-1 Skeleton  '" ng-false-value="''"type="checkbox"> Vein
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input name="equalize" ng-model="PictureCtrl.picture.filters.equalize" ng-true-value="'-equalize '" ng-false-value="''"type="checkbox"> Equalize
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input name="swirl" ng-model="PictureCtrl.picture.filters.emboss" ng-true-value="'-emboss 5 '" ng-false-value="''"type="checkbox"> Emboss
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input name="cavedrawing" ng-model="PictureCtrl.picture.filters.cavedrawing" ng-true-value="'-morphology Thicken:150 \'3x1+2+0: 0 0 5 \' '" ng-false-value="''"type="checkbox"> Cave Drawing
-                </label>
-            </div>
-            <div class="form-group">
-                <label>Caption</label>
-                <input type="text" class="form-control" ng-model="PictureCtrl.picture.caption">
+                <input type="file" custom-on-change/>
             </div>
             <br>
             <button ng-click='PictureCtrl.createPicture(PictureCtrl.picture)'>Submit</button>

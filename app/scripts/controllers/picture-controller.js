@@ -58,6 +58,18 @@ function PictureCtrl($routeParams, $location, PictureFactory, CommentFactory, Li
     PictureFactory.deletePicture(pictureId);
   };
 
+  vm.readPicture = function(input){
+    debugger;
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          pjs.uploadImage(e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+  };
 
   vm.showPictures = function(){
       PictureFactory.getPictures();

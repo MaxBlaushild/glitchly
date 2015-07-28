@@ -1,19 +1,39 @@
 <div class="row">
     <div id ="form" class="col-md-8 main-wrap col-md-offset-2">
+        <h1>Glitch a Pic</h1>
+        <canvas id="image-preview" processing-canvas></canvas>
         <form class="form-wrap" role="form" name="upsertPictureForm" novalidate>
-            <h1>Glitch a Pic</h1>
             <div class="alert alert-danger alert-dismissible" role="alert" ng-show="PictureCtrl.serverErrors">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 {{ PictureCtrl.serverErrorMsg }}
             </div>
-            <canvas id="image-preview" processing-canvas></canvas>
             <div class="form-group">
-                <label>Avatar</label>
-                <input type="file" custom-on-change/>
+                <label>Sort Type</label>
+                <select class="form-control" ng-model="PictureFormCtrl.newRecipe.sort" ng-options="sort.id as sort.name for sort in PictureFormCtrl.sorts"></select>
+            </div>
+            <div class="form-group">
+                <label>Relative or Absolute</label>
+                <input name="relativity" ng-model="PictureCtrl.newRecipe.relativity" min="0" max="1" value="0" step="1" type="range">
+            </div>
+            <div class="form-group">
+                <label>Ascending or Descending</label>
+                <input name="ascendingness" ng-model="PictureCtrl.newRecipe.ascendingness" min="0" max="2" value="0" step="2" type="range">
+            </div>
+            <div class="form-group">
+                <label>Positive or Negative</label>
+                <input name="positivity" ng-model="PictureCtrl.newRecipe.positivity" min="0" max="4" value="0" step="4" type="range">
+            </div>
+            <div class="form-group">
+                <label>Intensity</label>
+                <input name="intensity" ng-model="PictureCtrl.newRecipe.intensity" min="0" max="1" value="0" step=".01" type="range">
+            </div>
+            <div class="form-group">
+                <label>Picture</label>
+            <input type="file" custom-on-change/>
             </div>
             <br>
-            <button ng-click='PictureCtrl.createPicture(PictureCtrl.picture)'>Submit</button>
-            <button type="reset" class="btn btn-default" ng-click="PictureCtrl.cancel()">Cancel</button>
+            <button ng-click='PictureFormCtrl.createPicture(PictureCtrl.picture)'>Submit</button>
+            <button type="reset" class="btn btn-default" ng-click="PictureFormCtrl.cancel()">Cancel</button>
         </form>
     </div>
 </div>

@@ -9,8 +9,8 @@ function glPictureForm() {
     return {
         restrict: 'E',
         templateUrl: 'views/picture-form.html',
-        controller: PictureCtrl,
-        controllerAs: 'PictureCtrl',
+        controller: PictureFormCtrl,
+        controllerAs: 'PictureFormCtrl',
         bindToController: true
     };
 };

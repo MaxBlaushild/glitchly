@@ -19,8 +19,8 @@ angular
     var login = function(credentials){
       return $http.post(appSettings.apiUrl + '/login', credentials).success(function(response){
         angular.copy(response.user, currentUser);
-        $window.localStorage.setItem('gl-user-token', response.user.token);
-        $http.defaults.headers.common.Authorization = 'Token token=' + response.user.token;
+        $window.localStorage.setItem('gl-user-token', response.token);
+        $http.defaults.headers.common.Authorization = 'Token token=' + response.token;
         $location.path('');
       });
     };

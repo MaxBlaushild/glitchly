@@ -104,8 +104,8 @@
                     file: file,
                     fileFormDataName: 'auth[avatar]'
                 }).success(function(response) {
-                    $window.localStorage.setItem('gl-user-token', response.user.token);
-                    $http.defaults.headers.common.Authorization = 'Token token=' + response.user.token;
+                    $window.localStorage.setItem('gl-user-token', response.token);
+                    $http.defaults.headers.common.Authorization = 'Token token=' + response.token;
                     $location.path('/');
                 });
             };

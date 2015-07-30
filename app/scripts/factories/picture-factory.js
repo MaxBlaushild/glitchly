@@ -8,15 +8,8 @@
 
     function PictureFactory($http, $upload, $window,  $location, appSettings) {
         var picture = {};
-        picture.sliderFilters = {};
-        picture.sliderFilters.paint = 0;
-        picture.sliderFilters.swirl = 0;
-        picture.sliderFilters.implode = 0;
-        picture.sliderFilters.powerleak = 0;
-        picture.sliderFilters.tapestry = 0;
-        picture.sliderFilters.posterize = 0;
-        picture.filters = {};
         var pictures = [];
+        var feed = [];
 
 
         function setPicture(newPicture) {
@@ -26,7 +19,7 @@
         function getFeed(id) {
             return $http.get(appSettings.apiUrl)
                 .then(function(response) {
-                    angular.copy(response.data.pictures, pictures);
+                    angular.copy(response.data.pictures, feed);
             });
         };
 
@@ -69,6 +62,7 @@
             picture: picture,
             pictures: pictures,
             getFeed: getFeed,
+            feed: feed,
             deletePicture: deletePicture,
             setPicture: setPicture,
             createPicture: createPicture,

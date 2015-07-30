@@ -17,7 +17,7 @@
       <h1>{{ PictureCtrl.picture.caption }}</h1>
       <div id="heart" ng-class="{liked: PictureCtrl.picture.liked_by_user}" ng-click="PictureCtrl.toggleLike(PictureCtrl.picture.id, PictureCtrl.picture.liked_by_user)"></div>
       <p>{{PictureCtrl.picture.likes}} likes</p>
-      <form id="form">
+      <form class="form">
         <input ng-model="PictureCtrl.comment" type="text" name="comment"/>
         <button ng-click="PictureCtrl.createComment(PictureCtrl.picture.id)"> New Comment </button>
       </form>

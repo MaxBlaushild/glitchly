@@ -10,6 +10,7 @@ function PictureCtrl($routeParams, $location, PictureFactory, CommentFactory, Li
   vm.picture = PictureFactory.picture;
   vm.pictures = PictureFactory.pictures;
   vm.comment = PictureFactory.comment;
+  vm.feed = PictureFactory.feed;
 
   vm.createComment = function(id){
     CommentFactory.createComment(vm.comment, $routeParams.pictureId).then(function(response){
@@ -56,19 +57,6 @@ function PictureCtrl($routeParams, $location, PictureFactory, CommentFactory, Li
 
   vm.deletePicture = function(){
     PictureFactory.deletePicture(pictureId);
-  };
-
-  vm.readPicture = function(input){
-    debugger;
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          pjs.uploadImage(e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
   };
 
   vm.showPictures = function(){

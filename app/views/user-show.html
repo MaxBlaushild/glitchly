@@ -27,6 +27,6 @@
 </div>
 <div class="row grid">
   <a ng-repeat="picture in UserCtrl.user.pictures" href="#/pictures/{{picture.id}}">
-    <img class="picture" data-id="{{picture.id}}" ng-src="https://s3.amazonaws.com/testbucketfoshosies/large/{{picture.id}}/{{picture.image_file_name}}" />
+    <img class="picture" data-id="{{picture.id}}" ng-src="https://s3.amazonaws.com/testbucketfoshosies/{{picture.id}}/{{picture.image_file_name}}" />
   </a>
 </div>

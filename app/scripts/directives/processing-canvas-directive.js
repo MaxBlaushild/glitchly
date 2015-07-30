@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('MainDirective')
-  .directive('processingCanvasChange', [function(){
+  .directive('processingCanvas', [function(){
 
     return {
       restrict: 'A',

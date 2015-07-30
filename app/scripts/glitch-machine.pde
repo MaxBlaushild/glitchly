@@ -6,28 +6,23 @@ int blend_mode = OVERLAY;
 final static int[] blends = {
   ADD, SUBTRACT, DARKEST, LIGHTEST, DIFFERENCE, EXCLUSION, MULTIPLY, SCREEN, OVERLAY, HARD_LIGHT, SOFT_LIGHT, DODGE, BURN
 };
-IEval HUE_RED_W = OR(RANGE(HUE, hs(0), hs(20)), RANGE(HUE, hs(346), hs(359)));
-IEval HUE_RED = OR(RANGE(HUE, hs(0), hs(10)), RANGE(HUE, hs(355), hs(359)));
-IEval HUE_ORANGE_W = RANGE(HUE, hs(11), hs(50));
-IEval HUE_ORANGE = RANGE(HUE, hs(21), hs(40));
-IEval HUE_YELLOW_W = RANGE(HUE, hs(41), hs(80));
-IEval HUE_YELLOW = RANGE(HUE, hs(51), hs(60));
-IEval HUE_GREEN_W = RANGE(HUE, hs(61), hs(169));
-IEval HUE_GREEN = RANGE(HUE, hs(81), hs(140));
-IEval HUE_CYAN_W = RANGE(HUE, hs(141), hs(220));
-IEval HUE_CYAN = RANGE(HUE, hs(170), hs(200));
-IEval HUE_BLUE_W = RANGE(HUE, hs(201), hs(280));
-IEval HUE_BLUE = RANGE(HUE, hs(221), hs(240));
-IEval HUE_MAGENTA_W = RANGE(HUE, hs(241), hs(330));
-IEval HUE_MAGENTA = RANGE(HUE, hs(281), hs(320));
-IEval HUE_PINK_W = RANGE(HUE, hs(321), hs(355));
-IEval HUE_PINK = RANGE(HUE, hs(331), hs(345));
-IEval TRUE = new C_TRUE();
-
-Configurator[] recipes = {
-  RECIPE(3, 0.05, DEFAULT | NEGATE, RIGHT, NOT(HUE_BLUE_W)),
-  RECIPE(2, .5, NEGATE, BOTTOM, NOT(HUE_BLUE_W))
-};
+// two arguements that are what the range evaliuates to
+// CHANNELS
+// ALL Channels, Nxxx stand for negative (255-value)
+final static int RED = 0;
+final static int GREEN = 1;
+final static int BLUE = 2;
+final static int HUE = 3;
+final static int SATURATION = 4;
+final static int BRIGHTNESS = 5;
+final static int ALPHA = 6;
+final static int NRED = 7;
+final static int NGREEN = 8;
+final static int NBLUE = 9;
+final static int NHUE = 10;
+final static int NSATURATION = 11;
+final static int NBRIGHTNESS = 12;
+final static int NALPHA = 13;
 
 final static int DEFAULT = 0;
 final static int ABSOLUTE = 1;
@@ -52,26 +47,33 @@ final static int ONECOLOR = 9;
 final static int ROLL = 10;
 final static int ONECOLORB = 11;
 
-// CHANNELS
-// ALL Channels, Nxxx stand for negative (255-value)
-final static int RED = 0;
-final static int GREEN = 1;
-final static int BLUE = 2;
-final static int HUE = 3;
-final static int SATURATION = 4;
-final static int BRIGHTNESS = 5;
-final static int ALPHA = 6;
-final static int NRED = 7;
-final static int NGREEN = 8;
-final static int NBLUE = 9;
-final static int NHUE = 10;
-final static int NSATURATION = 11;
-final static int NBRIGHTNESS = 12;
-final static int NALPHA = 13;
-
 // EASING in animations
 final static int LINEAR = 0;
 final static int CUBIC = 1;
+
+
+IEval HUE_RED_W = OR(RANGE(HUE, hs(0), hs(20)), RANGE(HUE, hs(346), hs(359)));
+IEval HUE_RED = OR(RANGE(HUE, hs(0), hs(10)), RANGE(HUE, hs(355), hs(359)));
+IEval HUE_ORANGE_W = RANGE(HUE, hs(11), hs(50));
+IEval HUE_ORANGE = RANGE(HUE, hs(21), hs(40));
+IEval HUE_YELLOW_W = RANGE(HUE, hs(41), hs(80));
+IEval HUE_YELLOW = RANGE(HUE, hs(51), hs(60));
+IEval HUE_GREEN_W = RANGE(HUE, hs(61), hs(169));
+IEval HUE_GREEN = RANGE(HUE, hs(81), hs(140));
+IEval HUE_CYAN_W = RANGE(HUE, hs(141), hs(220));
+IEval HUE_CYAN = RANGE(HUE, hs(170), hs(200));
+IEval HUE_BLUE_W = RANGE(HUE, hs(201), hs(280));
+IEval HUE_BLUE = RANGE(HUE, hs(221), hs(240));
+IEval HUE_MAGENTA_W = RANGE(HUE, hs(241), hs(330));
+IEval HUE_MAGENTA = RANGE(HUE, hs(281), hs(320));
+IEval HUE_PINK_W = RANGE(HUE, hs(321), hs(355));
+IEval HUE_PINK = RANGE(HUE, hs(331), hs(345));
+IEval TRUE = new C_TRUE();
+
+Configurator[] recipes = {
+  // RECIPE(3, 1, DEFAULT | NEGATE | ABSOLUTE, RIGHT, NOT(HUE_YELLOW_W))
+  // RECIPE(2, .05, NEGATE, BOTTOM, NOT(HUE_BLUE_W))
+};
 
 int sortType = HEAP; // sort method, list below
 float sortAmount = 0.01; // percent of sort to achive
@@ -106,13 +108,40 @@ void setup() {
   size(510,510);
 }
 
-void uploadImage(String path){
+IEval huePicker(String hex){
+  switch(hex) {
+  case "#FF0000":
+    return HUE_RED_W;
+  case "#FF6600":
+    return HUE_ORANGE_W;
+  case "#FFFF00":
+    return HUE_YELLOW_W;
+  case "#00FF00":
+    return HUE_GREEN_W;
+  case "#00FFFF":
+    return HUE_CYAN_W;
+  case "#0000FF":
+    return HUE_BLUE_W;
+  case "#FF00FF":
+    return HUE_MAGENTA_W;
+  case "#FF0080":
+    return HUE_PINK_W;
+  default:
+    return TRUE;
+  }
+}
 
+void uploadImage(String path, int[] sorts, int[] polarities, int[] orders, int[] relativities, String[] hues, float[] intensities, int[] directions){
   String uri = path;
   img = loadImage(uri);
   sessionid = hex((int)random(0xffff), 4);
-  // img.resize(510, 510);
+  IEval PICKED_HUE;
+  for (i = 0; i < sorts.length; i++){
+   PICKED_HUE  = huePicker(hues[i]);
+    recipes[i] = RECIPE(sorts[i], intensities[i], polarities[i] | relativities[i] | orders[i], directions[i], PICKED_HUE);
+  }
 }
+
 
 //this happens last!!!!!!
 void draw() {
@@ -177,7 +206,7 @@ void processImage() {
     else
       negateColors = false;
     buffer.beginDraw();
-    if (direction == LEFT || direction == RIGHT)
+    if (direction == 37 || direction == 39)
       sortH();
     else
       sortV();
@@ -223,7 +252,7 @@ void sortH() {
 
 
     for (int i=0; i<s; i++) {
-      int ii = direction == RIGHT ? i : s-1-i;
+      int ii = direction == 39 ? i : s-1-i;
       buffer.set(posx[ii], y, bufw[i]);
     }
   }
@@ -249,7 +278,7 @@ void sortV() {
     if (reverseSort | negateColors) reverseTab(bufh, s);
 
     for (int i=0; i<s; i++) {
-      int ii = direction == BOTTOM ? i : s-1-i;
+      int ii = direction == 101 ? i : s-1-i;
       buffer.set(x, posy[ii], bufh[i]);
     }
   }
@@ -534,7 +563,6 @@ void topdownMerge(color[] t, color[] b, int ibegin, int imiddle, int iend) {
 }
 
 void topdownSplitMerge(color[] t, color[] b, int ibegin, int iend, float thr, int cnt) {
-  debugger;
   if (iend-ibegin<2) return;
   if (sortRatio(t, cnt)>=thr) return;
   int imiddle = (iend+ibegin)/2;
@@ -711,7 +739,7 @@ class Configurator {
   }
 }
 
-// HUE ranges
+// HUE ranges, returns an integer that is ang converted from 0-359 range to 255 range
 final int hs(float ang) {
   return (int)map(ang, 0, 359, 0, 255);
 }
@@ -729,15 +757,15 @@ PVector RAND(float a, float b) {
 IEval RANGE(int ch, float a, float b) {
   return new C_RANGE(ch, a, a, b, b);
 }
-IEval RANGE(int ch, PVector a, float b) {
-  return new C_RANGE(ch, a.x, a.y, b, b);
-}
-IEval RANGE(int ch, float a, PVector b) {
-  return new C_RANGE(ch, a, a, b.x, b.y);
-}
-IEval RANGE(int ch, PVector a, PVector b) {
-  return new C_RANGE(ch, a.x, a.y, b.x, b.y);
-}
+// IEval RANGE(int ch, PVector a, float b) {
+//   return new C_RANGE(ch, a.x, a.y, b, b);
+// }
+// IEval RANGE(int ch, float a, PVector b) {
+//   return new C_RANGE(ch, a, a, b.x, b.y);
+// }
+// IEval RANGE(int ch, PVector a, PVector b) {
+//   return new C_RANGE(ch, a.x, a.y, b.x, b.y);
+// }
 IEval AND(IEval a, IEval b) {
   return new C_AND(a, b);
 }
@@ -750,6 +778,7 @@ IEval NOT(IEval a) {
 
 color currentColor;
 
+// adds a series of methods to a class
 interface IEval {
   public boolean eval();
 }
@@ -759,7 +788,7 @@ class C_TRUE implements IEval {
     return true;
   }
 }
-
+// these are what the HUE_RED IEvals are . . . and what is always returning false. goddamnit
 class C_AND implements IEval {
   IEval a, b;
   public C_AND(IEval aa, IEval bb) {

@@ -2,12 +2,14 @@
 angular.module('MainController').controller('PictureFormCtrl', PictureFormCtrl);
 
 
-PictureCtrl.$inject = ['$location', 'PictureFactory'];
+PictureFormCtrl.$inject = ['$location', 'PictureFactory'];
 
 function PictureFormCtrl($location, PictureFactory){
   var vm = this;
+  vm.picture = {};
   vm.recipes = [];
   vm.newRecipe = {};
+
   vm.sorts = [
     { name: "Bubble", id: 0, description: "blah"},
     { name: "Insertion", id: 1, description: "blah"},
@@ -23,12 +25,42 @@ function PictureFormCtrl($location, PictureFactory){
     { name: "One Color RB", id: 11, description: "blah"}
   ];
 
-  vm.flags = [
-    {name: "Default", id: 0, description: "blah"}
+  vm.relativity = [
+    { name: "Relative", id: 0 },
+    { name: "Absolute", id: 1 }
   ];
 
+  vm.orders = [
+    { name: "Ascending", id: 0 },
+    { name: "Descending", id: 2 }
+  ];
+
+  vm.polarities = [
+    { name: "Positive", id: 0 },
+    { name: "Negative", id: 4 }
+  ];
+
+  vm.hues = [
+    { name: "Red", id: 1, hex: "#FF0000"},
+    { name: "Orange", id: 2, hex: "#FF6600"},
+    { name: "Yellow", id: 3, hex: "#FFFF00"},
+    { name: "Green", id: 4, hex: "#00FF00"},
+    { name: "Cyan", id: 5, hex: "#00FFFF"},
+    { name: "Blue", id: 6, hex: "#0000FF"},
+    { name: "Magenta", id: 7, hex: "#FF00FF"},
+    { name: "Pink", id: 8, hex: "#FF0080"}
+  ];
+
+  vm.directions = [
+    { name: "Left", id: 37 },
+    { name: "Right", id: 39 },
+    { name: "Up", id: 101 },
+    { name: "Bottom", id: 102 }
+  ];
 
   vm.createPicture = function(picture) {
+    var canvas = document.getElementById("image-preview");
+    picture.image = canvas.toDataURL();
     PictureFactory.createPicture(picture).then(function() {
       resetForm();
     }, function(response) {
@@ -37,17 +69,40 @@ function PictureFormCtrl($location, PictureFactory){
     });
   };
 
-  vm.readPicture = function(input){
-    debugger;
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
+  function toggleInProgressView(){
+    $('#progress-view').toggle();
+    $('#form-view').toggle();
+  };
 
-        reader.onload = function (e) {
-          pjs.uploadImage(e.target.result);
-        }
+  vm.glitchPicture = function(){
+    var pjs = Processing.getInstanceById('image-preview');
+    var reader = new FileReader();
+    var sorts = [];
+    var polarities = [];
+    var orders = [];
+    var relativities = [];
+    var hues = [];
+    var directions = [];
+    var intensities = [];
+    vm.recipes.forEach(function(recipe){
+      sorts.push(recipe.sort.id);
+      relativities.push(recipe.relativity.id);
+      polarities.push(recipe.polarity.id);
+      orders.push(recipe.order.id);
+      hues.push(recipe.hue);
+      intensities.push(Number(recipe.intensity));
+      directions.push(recipe.direction.id);
+    });
+    reader.onload = function (e) {
+      pjs.uploadImage(e.target.result, sorts, polarities, orders, relativities, hues, intensities, directions);
+    };
 
-        reader.readAsDataURL(input.files[0]);
-    }
+    reader.readAsDataURL($('#picture')[0].files[0]);
+  };
+
+  vm.addRecipe = function(recipe){
+    vm.recipes.push(recipe);
+    vm.newRecipe = {};
   };
 
   function resetForm() {

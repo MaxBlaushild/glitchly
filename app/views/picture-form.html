@@ -1,40 +1,67 @@
 <div class="row">
-    <div id ="form" class="col-md-8 main-wrap col-md-offset-2">
+    <div class="form col-md-6 main-wrap">
         <h1>Glitch a Pic</h1>
-        <canvas id="image-preview" processing-canvas></canvas>
         <form class="form-wrap" role="form" name="upsertPictureForm" novalidate>
-            <div class="alert alert-danger alert-dismissible" role="alert" ng-show="PictureCtrl.serverErrors">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                {{ PictureCtrl.serverErrorMsg }}
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Sort Type</label>
+                    <select class="form-control" ng-model="PictureFormCtrl.newRecipe.sort" ng-options="sort as sort.name for sort in PictureFormCtrl.sorts"></select>
+                </div>
+                <div class="form-group">
+                    <label>Absolute?</label>
+                    <select class="form-control" ng-model="PictureFormCtrl.newRecipe.relativity" ng-options="rel as rel.name for rel in PictureFormCtrl.relativity"></select>
+                </div>
+                <div class="form-group">
+                    <label>Order</label>
+                    <select class="form-control" ng-model="PictureFormCtrl.newRecipe.order" ng-options="order as order.name for order in PictureFormCtrl.orders"></select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Polarity</label>
+                    <select class="form-control" ng-model="PictureFormCtrl.newRecipe.polarity" ng-options="polarity as polarity.name for polarity in PictureFormCtrl.polarities"></select>
+                </div>
+                <div class="form-group">
+                    <label>Direction</label>
+                    <select class="form-control" ng-model="PictureFormCtrl.newRecipe.direction" ng-options="direction as direction.name for direction in PictureFormCtrl.directions"></select>
+                </div>
+                <div class="form-group">
+                    <label>Intensity</label>
+                    <input name="intensity" ng-model="PictureFormCtrl.newRecipe.intensity" min="0" max="1" value="0" step=".01" type="range">
+                </div>
             </div>
             <div class="form-group">
-                <label>Sort Type</label>
-                <select class="form-control" ng-model="PictureFormCtrl.newRecipe.sort" ng-options="sort.id as sort.name for sort in PictureFormCtrl.sorts"></select>
+                <label>Pixel Hue</label>
+                <br>
+                <label ng-repeat="hue in PictureFormCtrl.hues" ng-style="{'color': '{{hue.hex}}' }" class="radio-inline">
+                    <input type="radio" name="direction" ng-model="PictureFormCtrl.newRecipe.hue" id="inlineRadio1" value="{{hue.hex}}"> {{hue.name}}
+                </label>
             </div>
-            <div class="form-group">
-                <label>Relative or Absolute</label>
-                <input name="relativity" ng-model="PictureCtrl.newRecipe.relativity" min="0" max="1" value="0" step="1" type="range">
-            </div>
-            <div class="form-group">
-                <label>Ascending or Descending</label>
-                <input name="ascendingness" ng-model="PictureCtrl.newRecipe.ascendingness" min="0" max="2" value="0" step="2" type="range">
-            </div>
-            <div class="form-group">
-                <label>Positive or Negative</label>
-                <input name="positivity" ng-model="PictureCtrl.newRecipe.positivity" min="0" max="4" value="0" step="4" type="range">
-            </div>
-            <div class="form-group">
-                <label>Intensity</label>
-                <input name="intensity" ng-model="PictureCtrl.newRecipe.intensity" min="0" max="1" value="0" step=".01" type="range">
-            </div>
-            <div class="form-group">
-                <label>Picture</label>
-            <input type="file" custom-on-change/>
-            </div>
-            <br>
-            <button ng-click='PictureFormCtrl.createPicture(PictureCtrl.picture)'>Submit</button>
-            <button type="reset" class="btn btn-default" ng-click="PictureFormCtrl.cancel()">Cancel</button>
+            <button ng-click='PictureFormCtrl.addRecipe(PictureFormCtrl.newRecipe)'>Add Recipe</button>
+            <button type="reset" ng-click="PictureFormCtrl.cancel()">Cancel</button>
         </form>
+    </div>
+    <div class="form col-md-6">
+        <h1> Filters: </h1>
+        <div class="filter" ng-style="{'background-color': '{{recipe.hue}}' }" ng-repeat="recipe in PictureFormCtrl.recipes">
+            <p>{{recipe.sort.name}}</p>
+            <p>{{recipe.relativity.name}}</p>
+            <p>{{recipe.order.name}}</p>
+            <p>{{recipe.polarity.name}}</p>
+            <p>{{recipe.direction.name}}</p>
+            <p>{{recipe.intensity}}</p>
+        </div>
+        <canvas id="image-preview"  processing-canvas></canvas>
+        <div class="form-group" >
+                <label>Caption</label>
+                <input class="form-control" ng-model="PictureFormCtrl.picture.caption"id="caption" type="text" />
+        </div>
+        <div class="form-group">
+                <label>Picture</label>
+                <input id="picture" type="file" />
+        </div>
+        <button ng-click="PictureFormCtrl.glitchPicture()">Glitch It</button>
+        <button ng-click="PictureFormCtrl.createPicture(PictureFormCtrl.picture)">Create Picture</button>
     </div>
 </div>
 

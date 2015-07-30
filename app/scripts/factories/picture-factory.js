@@ -51,67 +51,9 @@
         };
 
         function createPicture(picture) {
-            var file = picture.image;
-            picture.filter = '';
-            if (picture.filters) {
-                $.each(picture.filters, function(key, filter){
-                    picture.filter += filter;
-                });
-            }
-            if (picture.sliderFilters) {
-                $.each(picture.sliderFilters, function(key, filter){
-                    if (filter > 0) {
-                        switch (key) {
-                            case "paint":
-                                picture.filter += '-paint ';
-                                picture.filter += filter;
-                                picture.filter += ' ';
-                                break;
-                            case "swirl":
-                                picture.filter += '-swirl ';
-                                picture.filter += filter;
-                                picture.filter += ' ';
-                                break;
-                            case "implode":
-                                picture.filter += '-implode ';
-                                picture.filter += filter;
-                                picture.filter += ' ';
-                                break;
-                            case "posterize":
-                                picture.filter += '-posterize ';
-                                picture.filter += filter;
-                                picture.filter += ' ';
-                                break;
-                            case "powerleak":
-                                picture.filter += '-morphology Thicken:';
-                                picture.filter += filter;
-                                picture.filter += ' "3x1+2+0: 1 0 0 " ';
-                                break;
-                            case "tapestry":
-                                picture.filter += '-resize ';
-                                picture.filter += filter;
-                                picture.filter += 'x';
-                                picture.filter += filter;
-                                picture.filter += ' -define distort:viewport=510x510 -virtual-pixel Mirror -distort SRT 0  +repage ';
-                                break;
-                        };
-                    }
-                });
-            }
-            $location.path('/glitch-in-progress');
-            return $upload.upload({
-                url: appSettings.apiUrl + '/pictures',
-                method: 'POST',
-                fields: {
-                    'picture[caption]': picture.caption,
-                    'picture[filter]' : picture.filter
-                },
-                file: file,
-                fileFormDataName: 'picture[image]'
-            }).success(function(response){
-                $location.path('/preview/' + response.picture.id);
-            }).error(function(data, status){
-                $location.path('/glitch-error');
+            var picture = { picture: picture };
+            return $http.post(appSettings.apiUrl + '/pictures', picture).then(function(response){
+                angular.copy(response.data.picture, picture);
             });
         };
 

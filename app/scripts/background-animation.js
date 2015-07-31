@@ -138,8 +138,6 @@ function render() {
     color = parameters[i][0];
     // sets the hue, saturation and lightness of colors, depending on the time, uses modulus as a wrap-around //
     materials[i].color.setHex(color);
-    // console.log(materials[i].color.getHexString());
-    // console.log(materials[i].color.getHex());
   }
 
   renderer.render(scene, camera);

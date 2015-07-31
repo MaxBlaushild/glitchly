@@ -31,9 +31,9 @@ function PictureCtrl($routeParams, $location, PictureFactory, CommentFactory, Li
   function switchLikeStatus(id, flag){
     flag ? vm.picture.likes-- : vm.picture.likes++;
     vm.picture.liked_by_user = !vm.picture.liked_by_user;
-    for (var i = 0; i < vm.pictures.length; i++) {
-        if (vm.pictures[i].id === id) {
-            vm.pictures[i].liked_by_user = !vm.pictures[i].liked_by_user;
+    for (var i = 0; i < vm.feed.length; i++) {
+        if (vm.feed[i].id === id) {
+            vm.feed[i].liked_by_user = !vm.feed[i].liked_by_user;
         };
     };
   }

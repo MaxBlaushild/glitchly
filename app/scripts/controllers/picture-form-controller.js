@@ -62,7 +62,7 @@ function PictureFormCtrl($location, PictureFactory){
     var canvas = document.getElementById("image-preview");
     picture.image = canvas.toDataURL();
     PictureFactory.createPicture(picture).then(function() {
-      resetForm();
+      $location.path('/');
     }, function(response) {
       vm.serverErrors = true;
       vm.serverErrorMsg = handleErrors(response.data);
@@ -93,6 +93,8 @@ function PictureFormCtrl($location, PictureFactory){
       intensities.push(Number(recipe.intensity));
       directions.push(recipe.direction.id);
     });
+    resetForm();
+    toggleInProgressView();
     reader.onload = function (e) {
       pjs.uploadImage(e.target.result, sorts, polarities, orders, relativities, hues, intensities, directions);
     };

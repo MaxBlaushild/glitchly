@@ -178,6 +178,9 @@ void draw() {
 
 
       processImage();
+      $('.form-phase-shift').toggle();
+      $('#progress-view').toggle();
+      $('#form-view').toggle();
       noLoop();
     }
   }
@@ -574,6 +577,7 @@ void topdownSplitMerge(color[] t, color[] b, int ibegin, int iend, float thr, in
 }
 
 void mergeSort(color[] t, int cnt, float thr) {
+  debugger;
   color[] buf = new color[cnt];
   topdownSplitMerge(t, buf, 0, cnt, thr, cnt);
 }

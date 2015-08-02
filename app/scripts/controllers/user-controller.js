@@ -1,9 +1,12 @@
 'use strict';
-angular.module('MainController').controller('UserCtrl', UserCtrl);
 
-UserCtrl.$inject = ['$routeParams','UserFactory', 'AuthFactory'];
+(function(){
 
-function UserCtrl($routeParams, UserFactory, AuthFactory) {
+    angular.module('MainController').controller('UserCtrl', UserCtrl);
+
+    UserCtrl.$inject = ['$routeParams','UserFactory', 'AuthFactory'];
+
+    function UserCtrl($routeParams, UserFactory, AuthFactory) {
         var vm = this;
         var userId = $routeParams.userId;
         vm.users = UserFactory.users;
@@ -69,6 +72,9 @@ function UserCtrl($routeParams, UserFactory, AuthFactory) {
             });
 
             return errString;
-        }
+        };
 
-    }
+    };
+
+})();
+

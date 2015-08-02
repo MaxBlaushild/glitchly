@@ -1,4 +1,6 @@
-    'use strict';
+'use strict';
+
+(function(){
 
     angular
         .module('MainDirective')
@@ -9,7 +11,7 @@
         return {
             restrict: 'E',
             templateUrl: 'views/picture-grid.html',
-            controller: PictureCtrl,
+            controller: 'PictureCtrl',
             controllerAs: 'PictureCtrl',
             bindToController: true,
             link: function(scope){
@@ -17,4 +19,7 @@
             }
         };
     };
+
+})();
+
 

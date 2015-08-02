@@ -70,10 +70,7 @@ IEval HUE_PINK_W = RANGE(HUE, hs(321), hs(355));
 IEval HUE_PINK = RANGE(HUE, hs(331), hs(345));
 IEval TRUE = new C_TRUE();
 
-Configurator[] recipes = {
-  // RECIPE(3, 1, DEFAULT | NEGATE | ABSOLUTE, RIGHT, NOT(HUE_YELLOW_W))
-  // RECIPE(2, .05, NEGATE, BOTTOM, NOT(HUE_BLUE_W))
-};
+Configurator[] recipes = {};
 
 int sortType = HEAP; // sort method, list below
 float sortAmount = 0.01; // percent of sort to achive
@@ -761,15 +758,7 @@ PVector RAND(float a, float b) {
 IEval RANGE(int ch, float a, float b) {
   return new C_RANGE(ch, a, a, b, b);
 }
-// IEval RANGE(int ch, PVector a, float b) {
-//   return new C_RANGE(ch, a.x, a.y, b, b);
-// }
-// IEval RANGE(int ch, float a, PVector b) {
-//   return new C_RANGE(ch, a, a, b.x, b.y);
-// }
-// IEval RANGE(int ch, PVector a, PVector b) {
-//   return new C_RANGE(ch, a.x, a.y, b.x, b.y);
-// }
+
 IEval AND(IEval a, IEval b) {
   return new C_AND(a, b);
 }

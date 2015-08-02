@@ -1,128 +1,133 @@
 'use strict';
-angular.module('MainController').controller('PictureFormCtrl', PictureFormCtrl);
 
+(function(){
 
-PictureFormCtrl.$inject = ['$location', 'PictureFactory'];
+  angular.module('MainController').controller('PictureFormCtrl', PictureFormCtrl);
 
-function PictureFormCtrl($location, PictureFactory){
-  var vm = this;
-  vm.picture = {};
-  vm.recipes = [];
-  vm.newRecipe = {};
+  PictureFormCtrl.$inject = ['$location', 'PictureFactory'];
 
-  vm.sorts = [
-    { name: "Bubble", id: 0, description: "blah"},
-    { name: "Insertion", id: 1, description: "blah"},
-    { name: "Selection", id: 2, description: "blah"},
-    { name: "Heap", id: 3, description: "Produces an echo effect"},
-    { name: "Shell", id: 4, description: "blah"},
-    { name: "Merge", id: 5, description: "blah"},
-    { name: "Quick", id: 6, description: "blah"},
-    { name: "Smooth", id: 7, description: "Creates lines in your picture"},
-    { name: "Permute", id: 8, description: "Pixels are scattered to the wind, amount is not used"},
-    { name: "One Color", id: 9, description: "blah"},
-    { name: "Roll", id: 10, description: "blah"},
-    { name: "One Color RB", id: 11, description: "blah"}
-  ];
+  function PictureFormCtrl($location, PictureFactory){
+    var vm = this;
+    vm.picture = {};
+    vm.recipes = [];
+    vm.newRecipe = {};
 
-  vm.relativity = [
-    { name: "Relative", id: 0 },
-    { name: "Absolute", id: 1 }
-  ];
+    vm.sorts = [
+      { name: "Bubble", id: 0, description: "blah"},
+      { name: "Insertion", id: 1, description: "blah"},
+      { name: "Selection", id: 2, description: "blah"},
+      { name: "Heap", id: 3, description: "Produces an echo effect"},
+      { name: "Shell", id: 4, description: "blah"},
+      { name: "Merge", id: 5, description: "blah"},
+      { name: "Quick", id: 6, description: "blah"},
+      { name: "Smooth", id: 7, description: "Creates lines in your picture"},
+      { name: "Permute", id: 8, description: "Pixels are scattered to the wind, amount is not used"},
+      { name: "One Color", id: 9, description: "blah"},
+      { name: "Roll", id: 10, description: "blah"},
+      { name: "One Color RB", id: 11, description: "blah"}
+    ];
 
-  vm.orders = [
-    { name: "Ascending", id: 0 },
-    { name: "Descending", id: 2 }
-  ];
+    vm.relativity = [
+      { name: "Relative", id: 0 },
+      { name: "Absolute", id: 1 }
+    ];
 
-  vm.polarities = [
-    { name: "Positive", id: 0 },
-    { name: "Negative", id: 4 }
-  ];
+    vm.orders = [
+      { name: "Ascending", id: 0 },
+      { name: "Descending", id: 2 }
+    ];
 
-  vm.hues = [
-    { name: "Red", id: 1, hex: "#FF0000"},
-    { name: "Orange", id: 2, hex: "#FF6600"},
-    { name: "Yellow", id: 3, hex: "#FFFF00"},
-    { name: "Green", id: 4, hex: "#00FF00"},
-    { name: "Cyan", id: 5, hex: "#00FFFF"},
-    { name: "Blue", id: 6, hex: "#0000FF"},
-    { name: "Magenta", id: 7, hex: "#FF00FF"},
-    { name: "Pink", id: 8, hex: "#FF0080"}
-  ];
+    vm.polarities = [
+      { name: "Positive", id: 0 },
+      { name: "Negative", id: 4 }
+    ];
 
-  vm.directions = [
-    { name: "Left", id: 37 },
-    { name: "Right", id: 39 },
-    { name: "Up", id: 101 },
-    { name: "Bottom", id: 102 }
-  ];
+    vm.hues = [
+      { name: "Red", id: 1, hex: "#FF0000"},
+      { name: "Orange", id: 2, hex: "#FF6600"},
+      { name: "Yellow", id: 3, hex: "#FFFF00"},
+      { name: "Green", id: 4, hex: "#00FF00"},
+      { name: "Cyan", id: 5, hex: "#00FFFF"},
+      { name: "Blue", id: 6, hex: "#0000FF"},
+      { name: "Magenta", id: 7, hex: "#FF00FF"},
+      { name: "Pink", id: 8, hex: "#FF0080"}
+    ];
 
-  vm.createPicture = function(picture) {
-    var canvas = document.getElementById("image-preview");
-    picture.image = canvas.toDataURL();
-    PictureFactory.createPicture(picture).then(function() {
-      $location.path('/');
-    }, function(response) {
-      vm.serverErrors = true;
-      vm.serverErrorMsg = handleErrors(response.data);
-    });
-  };
+    vm.directions = [
+      { name: "Left", id: 37 },
+      { name: "Right", id: 39 },
+      { name: "Up", id: 101 },
+      { name: "Bottom", id: 102 }
+    ];
 
-  function toggleInProgressView(){
-    $('#progress-view').toggle();
-    $('#form-view').toggle();
-  };
-
-  vm.glitchPicture = function(){
-    var pjs = Processing.getInstanceById('image-preview');
-    var reader = new FileReader();
-    var sorts = [];
-    var polarities = [];
-    var orders = [];
-    var relativities = [];
-    var hues = [];
-    var directions = [];
-    var intensities = [];
-    vm.recipes.forEach(function(recipe){
-      sorts.push(recipe.sort.id);
-      relativities.push(recipe.relativity.id);
-      polarities.push(recipe.polarity.id);
-      orders.push(recipe.order.id);
-      hues.push(recipe.hue);
-      intensities.push(Number(recipe.intensity));
-      directions.push(recipe.direction.id);
-    });
-    resetForm();
-    toggleInProgressView();
-    reader.onload = function (e) {
-      pjs.uploadImage(e.target.result, sorts, polarities, orders, relativities, hues, intensities, directions);
+    vm.createPicture = function(picture) {
+      var canvas = document.getElementById("image-preview");
+      picture.image = canvas.toDataURL();
+      PictureFactory.createPicture(picture).then(function() {
+        $location.path('/');
+      }, function(response) {
+        vm.serverErrors = true;
+        vm.serverErrorMsg = handleErrors(response.data);
+      });
     };
 
-    reader.readAsDataURL($('#picture')[0].files[0]);
-  };
+    function toggleInProgressView(){
+      $('#progress-view').toggle();
+      $('#form-view').toggle();
+    };
 
-  vm.addRecipe = function(recipe){
-    vm.recipes.push(recipe);
-    vm.newRecipe = {};
-  };
-
-  function resetForm() {
-      vm.recipes = [];
-      vm.newRecipe = {};
-  };
-
-  vm.cancel = function() {
-      resetForm();
-  };
-
-  function handleErrors(errObj) {
-      var errString = '';
-
-      angular.forEach(errObj, function(value, key) {
-          errString += key + ': ' + value;
+    vm.glitchPicture = function(){
+      var pjs = Processing.getInstanceById('image-preview');
+      var reader = new FileReader();
+      var sorts = [];
+      var polarities = [];
+      var orders = [];
+      var relativities = [];
+      var hues = [];
+      var directions = [];
+      var intensities = [];
+      vm.recipes.forEach(function(recipe){
+        sorts.push(recipe.sort.id);
+        relativities.push(recipe.relativity.id);
+        polarities.push(recipe.polarity.id);
+        orders.push(recipe.order.id);
+        hues.push(recipe.hue);
+        intensities.push(Number(recipe.intensity));
+        directions.push(recipe.direction.id);
       });
+      resetForm();
+      toggleInProgressView();
 
-      return errString;
+      reader.onload = function (e) {
+        pjs.uploadImage(e.target.result, sorts, polarities, orders, relativities, hues, intensities, directions);
+      };
+
+      reader.readAsDataURL($('#picture')[0].files[0]);
+    };
+
+    vm.addRecipe = function(recipe){
+      vm.recipes.push(recipe);
+      vm.newRecipe = {};
+    };
+
+    function resetForm() {
+        vm.recipes = [];
+        vm.newRecipe = {};
+    };
+
+    vm.cancel = function() {
+        resetForm();
+    };
+
+    function handleErrors(errObj) {
+        var errString = '';
+
+        angular.forEach(errObj, function(value, key) {
+            errString += key + ': ' + value;
+        });
+
+        return errString;
+    };
   };
-};
+
+})();

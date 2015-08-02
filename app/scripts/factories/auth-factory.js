@@ -1,6 +1,8 @@
 'use strict';
 
-angular
+(function(){
+
+  angular
   .module('frontendApp')
   .factory('AuthFactory', AuthFactory);
 
@@ -48,3 +50,7 @@ angular
     };
 
   };
+
+})();
+
+

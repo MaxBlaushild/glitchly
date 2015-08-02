@@ -1,4 +1,12 @@
-angular.module("frontendApp").value('appSettings', {
-  apiUrl: "http://localhost:3000",
-  version: "1.0"
-});
+'use strict';
+
+(function(){
+
+  angular.module("frontendApp").value('appSettings', {
+    apiUrl: "http://localhost:3000",
+    version: "1.0"
+  });
+
+})();
+
+

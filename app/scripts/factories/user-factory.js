@@ -1,5 +1,7 @@
 'use strict';
 
+(function(){
+
     angular
         .module('frontendApp')
         .factory('UserFactory', UserFactory);
@@ -88,7 +90,7 @@
                 auth: user
             };
             if (user.id) {
-                return $http.put(appSettings.apiUrl + '/users' + user.id, params)
+                return $http.put(appSettings.apiUrl + '/users/' + user.id, params)
                     .success(getUsers);
             } else {
                 var file = user.avatar;
@@ -132,3 +134,5 @@
             upsertUser: upsertUser
         };
     };
+
+})();

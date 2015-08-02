@@ -1,15 +1,22 @@
 'use strict';
 
-angular.module('MainDirective').directive('glNavBar', glNavBar);
+(function(){
 
+  angular.module('MainDirective').directive('glNavBar', glNavBar);
 
   function glNavBar(){
 
     return {
       restrict: 'E',
       templateUrl: 'views/navbar.html',
-      controller: NavbarCtrl,
+      controller: 'NavbarCtrl',
       controllerAs: 'NavbarCtrl',
       bindToController: true
     };
-  }
+  };
+
+})();
+
+
+
+

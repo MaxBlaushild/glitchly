@@ -1,21 +1,27 @@
 'use strict';
 
-angular
-    .module('MainDirective')
-    .directive('glPictureList', glPictureList);
+(function(){
+
+    angular
+        .module('MainDirective')
+        .directive('glPictureList', glPictureList);
 
 
-function glPictureList() {
-    return {
-        restrict: 'E',
-        templateUrl: 'views/picture-list.html',
-        controller: PictureCtrl,
-        controllerAs: 'PictureCtrl',
-        bindToController: true,
-        link: function (scope, element) {
-            scope.PictureCtrl.showFeed();
+    function glPictureList() {
+        return {
+            restrict: 'E',
+            templateUrl: 'views/picture-list.html',
+            controller: 'PictureCtrl',
+            controllerAs: 'PictureCtrl',
+            bindToController: true,
+            link: function (scope, element) {
+                scope.PictureCtrl.showFeed();
 
-        }
+            }
+        };
     };
-};
+
+})();
+
+
 

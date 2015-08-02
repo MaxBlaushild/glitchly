@@ -1,5 +1,7 @@
 'use strict';
 
+(function(){
+
     angular
         .module('frontendApp')
         .factory('PictureFactory', PictureFactory);
@@ -69,4 +71,6 @@
             getPictures: getPictures,
             getPicture: getPicture
         };
-    }
+    };
+
+})();

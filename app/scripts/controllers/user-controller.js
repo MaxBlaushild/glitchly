@@ -12,15 +12,22 @@
         vm.users = UserFactory.users;
         vm.user = UserFactory.user;
         vm.search = UserFactory.search;
+        vm.editMode = false;
 
 
         vm.upsertUser = function(user) {
             UserFactory.upsertUser(user).then(function() {
                 resetForm();
             }, function(response) {
+                resetForm();
                 vm.serverErrors = true;
                 vm.serverErrorMsg = handleErrors(response.data);
             });
+        };
+
+        vm.toggleEditMode = function(){
+            vm.user.avatar = '';
+            vm.editMode = !vm.editMode;
         };
 
         vm.showProfile = function(){
@@ -30,6 +37,18 @@
         vm.followUser = function(id){
             UserFactory.followUser(id);
         };
+
+        vm.renderPreview = function(){
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#profile').attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL($('#profile-preview')[0].files[0]);
+        };
+
+
 
         vm.isCurrentUser = function(id){
             if (AuthFactory.currentUser.id === id) {
@@ -56,9 +75,10 @@
         };
 
         function resetForm() {
-            UserFactory.setUser({});
+            vm.user = {};
             vm.serverErrors = false;
         };
+
 
         vm.cancel = function() {
             resetForm();

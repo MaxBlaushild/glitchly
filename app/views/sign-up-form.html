@@ -24,7 +24,7 @@
         </div>
         <div class="form-group">
             <label>Avatar</label>
-            <input type="file" ng-file-select ng-model="UserCtrl.user.avatar">
+            <input type="file" file-input-model="UserCtrl.user.avatar">
         </div>
         <button type="submit" class="button-wrap" ng-disabled="upsertUserForm.$invalid">Submit</button>
         <button type="reset" class="btn btn-default" ng-click="UserCtrl.cancel()">Cancel</button>

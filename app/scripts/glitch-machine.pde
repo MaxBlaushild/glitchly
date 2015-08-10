@@ -103,6 +103,7 @@ int max_display_size = 510;
 // this happens first and only once!!!!!
 void setup() {
   size(510,510);
+  background(#FF6600);
 }
 
 IEval huePicker(String hex){
@@ -175,9 +176,12 @@ void draw() {
 
 
       processImage();
+
+      // toggles glitch in progress view to picture confirmation view
       $('.form-phase-shift').toggle();
       $('#progress-view').toggle();
       $('#form-view').toggle();
+
       noLoop();
     }
   }

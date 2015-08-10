@@ -60,10 +60,10 @@
       { name: "Bottom", id: 102 }
     ];
 
-    vm.createPicture = function(picture) {
+    vm.createPicture = function() {
       var canvas = document.getElementById("image-preview");
-      picture.image = canvas.toDataURL();
-      PictureFactory.createPicture(picture).then(function() {
+      vm.picture.image = canvas.toDataURL();
+      PictureFactory.createPicture(vm.picture).then(function() {
         $location.path('/');
       }, function(response) {
         vm.serverErrors = true;
@@ -97,12 +97,7 @@
       });
       resetForm();
       toggleInProgressView();
-
-      reader.onload = function (e) {
-        pjs.uploadImage(e.target.result, sorts, polarities, orders, relativities, hues, intensities, directions);
-      };
-
-      reader.readAsDataURL($('#picture')[0].files[0]);
+      pjs.uploadImage(vm.picture.image, sorts, polarities, orders, relativities, hues, intensities, directions);
     };
 
     vm.addRecipe = function(recipe){

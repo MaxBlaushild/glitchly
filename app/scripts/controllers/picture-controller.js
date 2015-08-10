@@ -4,7 +4,6 @@
 
   angular.module('MainController').controller('PictureCtrl', PictureCtrl);
 
-
   PictureCtrl.$inject = ['$routeParams','$location', 'PictureFactory', 'CommentFactory', 'LikeFactory'];
 
   function PictureCtrl($routeParams, $location, PictureFactory, CommentFactory, LikeFactory){

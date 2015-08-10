@@ -8,6 +8,15 @@ html, body {
   background-color: $blue-steel-clear;
   z-index: 9999;
 
+  .profile {
+    height: 200px;
+    width: 200px;
+  }
+
+  .username {
+    width: 150px;
+  }
+
   img {
     margin-right: 10px;
   }

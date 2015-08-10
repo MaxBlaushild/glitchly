@@ -7,7 +7,6 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'angularFileUpload',
     'ngTouch',
     'MainController',
     'MainDirective'

@@ -37,9 +37,6 @@
       .when('/glitch-in-progress', {
         templateUrl: 'views/glitch-in-progress-view.html'
       })
-      .when('/edit-profile', {
-        templateUrl: 'views/glitch-timeout-view.html'
-      })
       .otherwise({
         redirectTo: '/'
       });

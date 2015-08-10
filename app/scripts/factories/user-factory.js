@@ -6,9 +6,9 @@
         .module('frontendApp')
         .factory('UserFactory', UserFactory);
 
-    UserFactory.$inject = ['$http', '$window', '$location', '$upload', 'appSettings'];
+    UserFactory.$inject = ['$http', '$window', '$location', 'appSettings'];
 
-    function UserFactory($http, $window, $location, $upload, appSettings) {
+    function UserFactory($http, $window, $location, appSettings) {
         var users = [];
         var user = {};
         var search;
@@ -86,26 +86,19 @@
         };
 
         function upsertUser(user) {
-            var params = {
-                auth: user
-            };
             if (user.id) {
-                return $http.put(appSettings.apiUrl + '/users/' + user.id, params)
-                    .success(getUsers);
+                var params = {
+                    user: user
+                };
+                return $http.patch(appSettings.apiUrl + '/users', params).then(function(response){
+                    angular.copy(response.data.user, user);
+                    location.reload();
+                });
             } else {
-                var file = user.avatar;
-                return $upload.upload({
-                    url: appSettings.apiUrl + '/register',
-                    method: 'POST',
-                    fields: {
-                        'auth[username]': user.username,
-                        'auth[email]': user.email,
-                        'auth[password]': user.password,
-                        'auth[bio]': user.bio,
-                         },
-                    file: file,
-                    fileFormDataName: 'auth[avatar]'
-                }).success(function(response) {
+                var params = {
+                    auth: user
+                };
+                return $http.post(appSettings.apiUrl + '/register', params).success(function(response) {
                     $window.localStorage.setItem('gl-user-token', response.token);
                     $http.defaults.headers.common.Authorization = 'Token token=' + response.token;
                     $location.path('/');

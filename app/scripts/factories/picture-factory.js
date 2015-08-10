@@ -6,9 +6,9 @@
         .module('frontendApp')
         .factory('PictureFactory', PictureFactory);
 
-    PictureFactory.$inject = ['$http', '$upload', '$window', '$location', 'appSettings'];
+    PictureFactory.$inject = ['$http', '$window', '$location', 'appSettings'];
 
-    function PictureFactory($http, $upload, $window,  $location, appSettings) {
+    function PictureFactory($http, $window,  $location, appSettings) {
         var picture = {};
         var pictures = [];
         var feed = [];

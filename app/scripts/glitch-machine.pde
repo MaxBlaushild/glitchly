@@ -135,8 +135,7 @@ void uploadImage(String path, int[] sorts, int[] polarities, int[] orders, int[]
   sessionid = hex((int)random(0xffff), 4);
   IEval PICKED_HUE;
   for (i = 0; i < sorts.length; i++){
-   PICKED_HUE  = huePicker(hues[i]);
-    recipes[i] = RECIPE(sorts[i], intensities[i], polarities[i] | relativities[i] | orders[i], directions[i], PICKED_HUE);
+    recipes[i] = RECIPE(sorts[i], intensities[i], polarities[i] | relativities[i] | orders[i], directions[i], huePicker(hues[i]));
   }
 }
 
@@ -524,7 +523,7 @@ void smoothSort(color[] t, int cnt, float thr) {
 void quickSortTwo(color[] t, int a, int b, int cnt, float thr) {
   if (a>=b) return;
   if (sortRatio(t, cnt)>=thr) return;
-  int pivotidx = a+(b-a)/2;
+  int pivotidx = Math.floor(a+(b-a)/2);
   color pivot = t[pivotidx];
   swap(t, pivotidx, b);
 
@@ -567,18 +566,23 @@ void topdownMerge(color[] t, color[] b, int ibegin, int imiddle, int iend) {
 }
 
 void topdownSplitMerge(color[] t, color[] b, int ibegin, int iend, float thr, int cnt) {
-  if (iend-ibegin<2) return;
-  if (sortRatio(t, cnt)>=thr) return;
-  int imiddle = (iend+ibegin)/2;
+  if (iend-ibegin<2) {
+    return;
+  }
+  if (sortRatio(t, cnt)>=thr) {
+    return;
+  }
+  int imiddle = Math.floor((iend+ibegin)/2);
   topdownSplitMerge(t, b, ibegin, imiddle, thr, cnt);
   topdownSplitMerge(t, b, imiddle, iend, thr, cnt);
-  if (sortRatio(t, cnt)>=thr) return;
+  if (sortRatio(t, cnt)>=thr) {
+    return;
+  }
   topdownMerge(t, b, ibegin, imiddle, iend);
   arrayCopy(b, ibegin, t, ibegin, iend-ibegin);
 }
 
 void mergeSort(color[] t, int cnt, float thr) {
-  debugger;
   color[] buf = new color[cnt];
   topdownSplitMerge(t, buf, 0, cnt, thr, cnt);
 }

@@ -44,12 +44,12 @@
     <div  class="form col-md-6">
         <h1 class="form-phase-shift"> Filters: </h1>
         <div class="filter" ng-style="{'background-color': '{{recipe.hue}}' }" ng-repeat="recipe in PictureFormCtrl.recipes">
-            <p>{{recipe.sort.name}}</p>
-            <p>{{recipe.relativity.name}}</p>
-            <p>{{recipe.order.name}}</p>
-            <p>{{recipe.polarity.name}}</p>
-            <p>{{recipe.direction.name}}</p>
-            <p>{{recipe.intensity}}</p>
+            <h3>{{recipe.sort.name}}</h3>
+            <h3>{{recipe.relativity.name}}</h3>
+            <h3>{{recipe.order.name}}</h3>
+            <h3>{{recipe.polarity.name}}</h3>
+            <h3>{{recipe.direction.name}}</h3>
+            <h3>{{recipe.intensity}}</h3>
         </div>
         <canvas id="image-preview"  processing-canvas></canvas>
         <form class="form-phase-shift">

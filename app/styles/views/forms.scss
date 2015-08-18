@@ -31,3 +31,17 @@
 #form-phase-two {
   z-index: 10;
 }
+
+.filter {
+  opacity: .7;
+  text-align: center;
+
+  h3 {
+    display: inline-block;
+    color: white;
+    opacity: 1;
+    @include stroke(2, $blue);
+    margin: 15px;
+
+  }
+}

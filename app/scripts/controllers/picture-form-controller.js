@@ -78,7 +78,6 @@
 
     vm.glitchPicture = function(){
       var pjs = Processing.getInstanceById('image-preview');
-      var reader = new FileReader();
       var sorts = [];
       var polarities = [];
       var orders = [];

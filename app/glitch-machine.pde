@@ -1,5 +1,6 @@
 String uri;
 PImage img;
+PImage previewImage;
 boolean do_blend = false;
 String zero = "0";
 int blend_mode = OVERLAY;
@@ -139,9 +140,17 @@ void uploadImage(String path, int[] sorts, int[] polarities, int[] orders, int[]
   }
 }
 
+void imagePreview(String image){
+  previewImage = loadImage(image);
+}
+
 
 //this happens last!!!!!!
 void draw() {
+  if (previewImage && !img){
+    previewImage.resize(510, 510);
+    image(previewImage);
+  }
   if (img){
     if (img.height > 100) {
       img.resize(510,510);

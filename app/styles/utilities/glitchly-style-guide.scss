@@ -15,6 +15,9 @@ $orange-crush-clear: rgba(255, 102, 0, .5);
   position: fixed;
   background-color: black;
   top: 0;
+  @media (max-width: 740px) {
+    display: none;
+  }
 };
 
 p, h1, h2, h3, h4, a {
@@ -74,12 +77,5 @@ p, h1, h2, h3, h4, a {
   box-shadow:48px 60px #70480b,48px 66px #70480b,48px 72px #70480b,48px 78px #70480b,48px 84px #70480b,48px 90px #70480b,48px 96px #70480b,54px 96px #70480b,54px 90px #70480b,54px 78px #70480b,54px 84px #70480b,54px 72px #70480b,54px 66px #70480b,54px 60px #70480b,54px 54px #70480b,48px 54px #70480b,54px 48px #9a9cb3,48px 48px #9a9cb3,60px 48px #9a9cb3,60px 42px #9a9cb3,54px 42px #9a9cb3,48px 42px #9a9cb3,42px 48px #9a9cb3,42px 42px #9a9cb3,36px 42px #9a9cb3,36px 48px #9a9cb3,66px 48px #9a9cb3,66px 42px #9a9cb3,72px 48px #9a9cb3,72px 42px #9a9cb3,72px 36px #9a9cb3,66px 36px #9a9cb3,60px 36px #9a9cb3,48px 36px #9a9cb3,54px 36px #9a9cb3,42px 36px #9a9cb3,36px 36px #9a9cb3,30px 42px #9a9cb3,30px 48px #9a9cb3,30px 36px #9a9cb3,30px 30px #9a9cb3,36px 30px #9a9cb3,42px 30px #9a9cb3,54px 30px #9a9cb3,48px 30px #9a9cb3,60px 30px #9a9cb3,66px 30px #9a9cb3,72px 30px #9a9cb3,48px 24px #70480b,54px 24px #70480b;
 }
 
-.filter {
-  opacity: .7;
 
-  p {
-    display: inline-block;
-    color: white;
-    opacity: 1;
-  }
-}
+

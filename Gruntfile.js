@@ -383,6 +383,9 @@ module.exports = function (grunt) {
           src: 'CNAME',
           dest: '<%= yeoman.dist %>/CNAME'
         }, {
+          src: 'app/glitch-machine.pde',
+          dest: '<%= yeoman.dist %>/glitch-machine.pde'
+        }, {
           expand: true,
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',

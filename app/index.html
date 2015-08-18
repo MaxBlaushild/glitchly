@@ -23,6 +23,7 @@
     <gl-nav-bar></gl-nav-bar>
     <div class="container">
         <ng-view></ng-view>
+        <particle-cloud></particle-cloud>
     </div>
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -76,9 +77,7 @@
         <script src="scripts/directives/cloud-picture-directive.js"></script>
         <script src="scripts/directives/processing-canvas-directive.js"></script>
         <script src="scripts/directives/file-input-model-directive.js"></script>
-
-        <!--- non-angular -->
-        <script src="scripts/background-animation.js"></script>
+        <script src="scripts/directives/particle-cloud-directive.js"></script>
 
         <!-- endbuild -->
 </body>

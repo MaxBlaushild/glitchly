@@ -1,7 +1,16 @@
 <div class="row">
-    <div class="form col-md-6 main-wrap form-phase-shift">
-        <h1>Glitch a Pic</h1>
+    <div class="form col-md-6 main-wrap">
         <form class="form-wrap" role="form" name="upsertPictureForm" ng-submit='PictureFormCtrl.addRecipe(PictureFormCtrl.newRecipe)' novalidate>
+            <div class="col-md-12">
+                <h1>1. Choose a pic</h1>
+                <div class="form-group">
+                        <label>Picture</label>
+                        <input id="picture" type="file" file-input-model="PictureFormCtrl.picture.image"/>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h1>2. Add a filter</h1>
+            </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Sort Type</label>
@@ -42,32 +51,25 @@
         </form>
     </div>
     <div  class="form col-md-6">
-        <h1 class="form-phase-shift"> Filters: </h1>
         <div class="filter" ng-style="{'background-color': '{{recipe.hue}}' }" ng-repeat="recipe in PictureFormCtrl.recipes">
-            <h3>{{recipe.sort.name}}</h3>
-            <h3>{{recipe.relativity.name}}</h3>
-            <h3>{{recipe.order.name}}</h3>
-            <h3>{{recipe.polarity.name}}</h3>
-            <h3>{{recipe.direction.name}}</h3>
-            <h3>{{recipe.intensity}}</h3>
+            <p>{{recipe.sort.name}}</p>
+            <p>{{recipe.relativity.name}}</p>
+            <p>{{recipe.order.name}}</p>
+            <p>{{recipe.polarity.name}}</p>
+            <p>{{recipe.direction.name}}</p>
+            <p>{{recipe.intensity}}</p>
+            <button ng-click="PictureFormCtrl.removeFilter(PictureFormCtrl.recipes.indexOf(recipe))">X</button>
         </div>
-        <canvas id="image-preview"  processing-canvas></canvas>
-        <form class="form-phase-shift">
-            <div class="form-group">
-                    <label>Picture</label>
-                    <input id="picture" type="file" file-input-model="PictureFormCtrl.picture.image"/>
-            </div>
-            <button ng-click="PictureFormCtrl.glitchPicture()">Glitch It</button>
-        </form>
+        <canvas id="image-preview" processing-canvas></canvas>
     </div>
-    <div class="form col-md-6 form-phase-shift" style="display: none">
-        <h1>Happy with your picture?</h1>
+    <div class="form col-md-6" ng-show="PictureFormCtrl.picture.image">
+        <h1>3. Upload picture</h1>
         <div class="form-group" >
             <label>Caption</label>
             <input class="form-control" ng-model="PictureFormCtrl.picture.caption" id="caption" type="text" />
         </div>
         <button ng-click="PictureFormCtrl.createPicture(PictureFormCtrl.picture)">Create Picture</button>
-        <a href="#/glitch-a-pic"><button>Start Over</button></a>
+        <button ng-click="PictureFormCtrl.resetPage()">Start Over</button>
     </div>
 </div>
 

@@ -60,7 +60,7 @@ IEval HUE_ORANGE = RANGE(HUE, hs(21), hs(40));
 IEval HUE_YELLOW_W = RANGE(HUE, hs(41), hs(80));
 IEval HUE_YELLOW = RANGE(HUE, hs(51), hs(60));
 IEval HUE_GREEN_W = RANGE(HUE, hs(61), hs(169));
-IEval HUE_GREEN = RANGE(HUE, hs(81), hs(140));
+IEval HUE_GREEN = RANGE(HUE, hs(71), hs(157));
 IEval HUE_CYAN_W = RANGE(HUE, hs(141), hs(220));
 IEval HUE_CYAN = RANGE(HUE, hs(170), hs(200));
 IEval HUE_BLUE_W = RANGE(HUE, hs(201), hs(280));
@@ -131,6 +131,8 @@ IEval huePicker(String hex){
 }
 
 void uploadImage(String path, int[] sorts, int[] polarities, int[] orders, int[] relativities, String[] hues, float[] intensities, int[] directions){
+  // restarts the scripts continuous running of draw if nolooped
+  loop();
   String uri = path;
   img = loadImage(uri);
   sessionid = hex((int)random(0xffff), 4);
@@ -140,17 +142,10 @@ void uploadImage(String path, int[] sorts, int[] polarities, int[] orders, int[]
   }
 }
 
-void imagePreview(String image){
-  previewImage = loadImage(image);
-}
 
 
 //this happens last!!!!!!
 void draw() {
-  if (previewImage && !img){
-    previewImage.resize(510, 510);
-    image(previewImage);
-  }
   if (img){
     if (img.height > 100) {
       img.resize(510,510);
@@ -182,18 +177,26 @@ void draw() {
       posx = new int[img.width];
       posy = new int[img.height];
 
-
+      // glitch the image
       processImage();
 
-      // toggles glitch in progress view to picture confirmation view
-      $('.form-phase-shift').toggle();
-      $('#progress-view').toggle();
-      $('#form-view').toggle();
+      // toggle the view back and undefine all of the values in our script. timeout makes it a cleaner transition
+      setTimeout(cleanUp, 500);
 
+      // stops the script from continually running draw
       noLoop();
     }
   }
 }
+
+void cleanUp(){
+  recipes = [];
+  img = null;
+  $('#progress-view').toggle();
+  $('#form-view').toggle();
+}
+
+
 
 void processImage() {
   for (int i=0; i<recipes.length; i++) {
@@ -237,6 +240,7 @@ void processImage() {
 
   buffer.endDraw();
   image(buffer, 0, 0, width, height);
+
 }
 
 

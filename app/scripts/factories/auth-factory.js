@@ -21,19 +21,20 @@
     var login = function(credentials){
       return $http.post(appSettings.apiUrl + '/login', credentials).success(function(response){
         angular.copy(response.user, currentUser);
-        $window.localStorage.setItem('gl-user-token', response.token);
+        simpleStorage.set('gl-user-token', response.token);
         $http.defaults.headers.common.Authorization = 'Token token=' + response.token;
         $location.path('');
       });
     };
 
     var logOut = function(){
-      $window.localStorage.removeItem('gl-user-token');
+      debugger;
+      simpleStorage.flush();
       $location.path('/login');
     };
 
      var isLoggedIn = function(){
-      var data = $window.localStorage.getItem('gl-user-token');
+      var data = simpleStorage.get('gl-user-token');
       if (data) {
         return true;
       } else {

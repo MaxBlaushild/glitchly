@@ -5,9 +5,9 @@
   angular.module('MainController').controller('NavbarCtrl', NavbarCtrl);
 
 
-  NavbarCtrl.$inject = ['$location', 'UserFactory', 'AuthFactory'];
+  NavbarCtrl.$inject = ['$location', 'UserFactory', 'AuthFactory', '$scope'];
 
-  function NavbarCtrl($location, UserFactory, AuthFactory){
+  function NavbarCtrl($location, UserFactory, AuthFactory, $scope){
     var vm = this;
     vm.searchString = '';
     vm.currentUser = AuthFactory.currentUser;
@@ -34,7 +34,15 @@
       }
     };
 
-    getProfile();
+    $scope.$watch(function () {
+       return self.currentUser;
+    },function(user){
+        if (!user && simpleStorage.get('gl-user-token')) {
+          getProfile();
+        }
+    });
+
+
   };
 
 })();

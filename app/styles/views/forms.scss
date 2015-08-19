@@ -1,7 +1,8 @@
 .form {
+  text-align: center;
 
   h1 {
-    font-size: 72px;
+    font-size: 60px;
   }
 
   @media (max-width: 500px) {
@@ -18,6 +19,7 @@
 
   input {
     @include glitch-form;
+    margin: 0 auto;
   }
 
   @include placeholder-change($blue);
@@ -25,23 +27,33 @@
   button {
     @include glitch-button;
   }
-}
 
+  .filter {
+    opacity: .7;
+    text-align: center;
+    border: 5px solid $blue;
+    margin: 10px 0px;
+    padding: 5px;
 
-#form-phase-two {
-  z-index: 10;
-}
+    button {
+      @include glitch-button;
+    }
 
-.filter {
-  opacity: .7;
-  text-align: center;
+    p {
+      display: inline-block;
+      color: white;
+      opacity: 1;
+      @include stroke(2, $blue);
+      margin: 15px 5px;
+      font-size: 20px;
 
-  h3 {
-    display: inline-block;
-    color: white;
-    opacity: 1;
-    @include stroke(2, $blue);
-    margin: 15px;
+    }
+  }
 
+  #image-preview {
+    text-align: center;
   }
 }
+
+
+

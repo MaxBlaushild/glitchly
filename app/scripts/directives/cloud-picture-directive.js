@@ -13,9 +13,11 @@
         return Math.floor(Math.random() * (max - min + 1) + min);
       };
 
+      // get total screen size
       var vpw = $(window).width();
       var vph = $(window).height();
 
+      // randomize the starting position of each picture
       var startX = getRandomInt(0,vpw);
       var startY = getRandomInt(0,vph);
       var x = 0;
@@ -28,12 +30,14 @@
         width: (vph / 5) + 'px'
       });
 
+      // load the picture on double-click
       element.on('dblclick', function(event){
         scope.$apply(function() {
           $location.path('/pictures/' + element.data("id"));
         });
       });
 
+      // drag the element
       element.on('mousedown', function(event) {
           event.preventDefault();
           $(document).on('mousemove', mousemove);

@@ -62,8 +62,11 @@
 
     vm.createPicture = function() {
       var canvas = document.getElementById("image-preview");
-      vm.picture.image = canvas.toDataURL();
-      PictureFactory.createPicture(vm.picture).then(function() {
+      var picture = {
+        image: canvas.toDataURL(),
+        caption: vm.picture.caption
+      };
+      PictureFactory.createPicture(picture).then(function() {
         $location.path('/');
       }, function(response) {
         vm.serverErrors = true;
@@ -76,7 +79,8 @@
       $('#form-view').toggle();
     };
 
-    vm.glitchPicture = function(){
+    var glitchPicture = function(){
+      toggleInProgressView();
       var pjs = Processing.getInstanceById('image-preview');
       var sorts = [];
       var polarities = [];
@@ -94,23 +98,36 @@
         intensities.push(Number(recipe.intensity));
         directions.push(recipe.direction.id);
       });
-      resetForm();
-      toggleInProgressView();
+
       pjs.uploadImage(vm.picture.image, sorts, polarities, orders, relativities, hues, intensities, directions);
     };
 
     vm.addRecipe = function(recipe){
       vm.recipes.push(recipe);
       vm.newRecipe = {};
+      glitchPicture();
     };
 
     function resetForm() {
-        vm.recipes = [];
-        vm.newRecipe = {};
+      vm.recipes = [];
+      vm.newRecipe = {};
     };
 
     vm.cancel = function() {
         resetForm();
+    };
+
+    vm.removeFilter = function(index){
+      vm.recipes.splice(index, 1);
+      glitchPicture();
+    };
+
+    vm.uploadImage = function(){
+      glitchPicture();
+    };
+
+    vm.resetPage = function(){
+      location.reload();
     };
 
     function handleErrors(errObj) {

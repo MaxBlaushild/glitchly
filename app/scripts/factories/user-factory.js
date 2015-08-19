@@ -37,7 +37,7 @@
         };
 
         function getProfile() {
-            var id = $window.localStorage.getItem('gl-user-id');
+            var id = simpleStorage.get('gl-user-id');
             return $http.get(appSettings.apiUrl + '/users/' + id)
                 .then(function(response) {
                     angular.copy(response.data, user);
@@ -99,7 +99,7 @@
                     auth: user
                 };
                 return $http.post(appSettings.apiUrl + '/register', params).success(function(response) {
-                    $window.localStorage.setItem('gl-user-token', response.token);
+                    simpleStorage.set('gl-user-token', response.token, {TTL: 86400});
                     $http.defaults.headers.common.Authorization = 'Token token=' + response.token;
                     $location.path('/');
                 });

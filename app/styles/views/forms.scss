@@ -1,5 +1,4 @@
 .form {
-  text-align: center;
 
   h1 {
     font-size: 60px;
@@ -19,7 +18,6 @@
 
   input {
     @include glitch-form;
-    margin: 0 auto;
   }
 
   @include placeholder-change($blue);
@@ -54,6 +52,5 @@
     text-align: center;
   }
 }
-
 
 

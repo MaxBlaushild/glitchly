@@ -21,7 +21,7 @@
             }, function(response) {
                 resetForm();
                 vm.serverErrors = true;
-                vm.serverErrorMsg = handleErrors(response.data);
+                vm.serverErrorMsg = "You must fill out all of the fields!!!!";
             });
         };
 

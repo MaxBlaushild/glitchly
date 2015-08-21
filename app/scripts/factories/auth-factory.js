@@ -14,8 +14,7 @@
     function getProfile() {
       return $http.get(appSettings.apiUrl + '/refresh-navbar')
         .then(function(response) {
-          debugger;
-          angular.copy(response.user, currentUser);
+          angular.copy(response.data.user, currentUser);
       });
     };
 
@@ -30,7 +29,7 @@
 
     var logOut = function(){
       simpleStorage.flush();
-      $location.path('/login');
+      $location.path('/try-glitchly');
     };
 
      var isLoggedIn = function(){

@@ -13,7 +13,7 @@
 
     function getProfile() {
       return $http.get(appSettings.apiUrl + '/refresh-navbar')
-        .success(function(response) {
+        .then(function(response) {
           angular.copy(response.user, currentUser);
       });
     };
@@ -28,18 +28,13 @@
     };
 
     var logOut = function(){
-      debugger;
       simpleStorage.flush();
       $location.path('/login');
     };
 
      var isLoggedIn = function(){
       var data = simpleStorage.get('gl-user-token');
-      if (data) {
-        return true;
-      } else {
-        return false;
-      };
+      return (data);
     };
 
     return {

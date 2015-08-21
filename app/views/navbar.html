@@ -15,8 +15,8 @@
             <li ng-if="NavbarCtrl.isLoggedIn()"><a class="nav-not-pic" href='#/glitch-a-pic'>Add Pic</a></li>
             <li ng-if="NavbarCtrl.isLoggedIn()"><a class="nav-not-pic" href='#/discover'>Discover</a></li>
             <li ng-if="NavbarCtrl.isLoggedIn()"><a class="nav-not-pic" href='javascript:void(0)' ng-click="NavbarCtrl.logOut()">Logout</a></li>
-            <li ng-if="!NavbarCtrl.isLoggedIn()"><a class="nav-not-pic" href='#/login'>Login</a></li>
-            <li ng-if="!NavbarCtrl.isLoggedIn()"><a class="nav-not-pic" href='#/sign-up'>Sign Up</a></li>
+            <li ng-if="!NavbarCtrl.isLoggedIn()" pulsing-nav><a class="nav-not-pic" href='#/login'>Login</a></li>
+            <li ng-if="!NavbarCtrl.isLoggedIn()" pulsing-nav><a class="nav-not-pic" href='#/sign-up'>Sign Up</a></li>
           </ul>
           <form class="navbar-form navbar-right" role="search">
             <div class="form-group">

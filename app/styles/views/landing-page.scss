@@ -1,0 +1,18 @@
+#landing-page{
+
+  button {
+    padding: 15px 40px;
+    font-size: 26px;
+    position: absolute;
+    top: 600px;
+    left: 1000px;
+    z-index: 100;
+    @include glitch-button;
+  }
+
+  img {
+    width: 100%;
+    position: relative;
+  }
+
+}

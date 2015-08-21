@@ -16,6 +16,9 @@
       .when('/following', {
         templateUrl: 'views/user-list-view.html'
       })
+      .when('/try-glitchly', {
+        templateUrl: 'views/landing-page.html'
+      })
       .when('/sign-up', {
         templateUrl: 'views/sign-up-view.html'
       })

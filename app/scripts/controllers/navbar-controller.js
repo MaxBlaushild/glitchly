@@ -5,20 +5,20 @@
   angular.module('MainController').controller('NavbarCtrl', NavbarCtrl);
 
 
-  NavbarCtrl.$inject = ['$location', 'UserFactory', 'AuthFactory', '$scope'];
+  NavbarCtrl.$inject = ['$location', 'UserFactory', 'AuthFactory', '$scope', '$rootScope'];
 
-  function NavbarCtrl($location, UserFactory, AuthFactory, $scope){
+  function NavbarCtrl($location, UserFactory, AuthFactory, $scope, $rootScope){
     var vm = this;
     vm.searchString = '';
     vm.currentUser = AuthFactory.currentUser;
 
     vm.isLoggedIn = function(){
       return AuthFactory.isLoggedIn();
-    }
+    };
 
     vm.logOut = function(){
       AuthFactory.logOut();
-    }
+    };
 
     vm.searchUsers = function(searchString){
       UserFactory.getUsers(searchString).then(function(response){

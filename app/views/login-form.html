@@ -2,6 +2,10 @@
     <div class="col-md-8 main-wrap col-md-offset-2">
       <form class="form" name="loginForm"  novalidate>
         <h1> Log In</h1>
+              <div class="alert alert-dismissible warning-message" role="alert" ng-show="AuthCtrl.serverErrors">
+            <h1>You goofed! Try again.</h1>
+            <button type="button" class="close" ng-click="AuthCtrl.closeWarningMessage()"><span aria-hidden="true">&times;</span></button>
+        </div>
         <div class='form-group'>
           <label id='username-label'for="username">Username</label>
           <input id='username' type="text" class="form-control" name="username" ng-model="AuthCtrl.credentials.username" required>

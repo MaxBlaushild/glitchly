@@ -12,7 +12,6 @@ angular
     'MainDirective'
   ])
   .config(function ($httpProvider) {
-
     $httpProvider.interceptors.push('fourOhOneInterceptor');
   })
   .run(function($rootScope, $http, $window, $location, $routeParams, AuthFactory, UserFactory, PictureFactory) {

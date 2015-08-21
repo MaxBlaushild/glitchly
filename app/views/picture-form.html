@@ -58,7 +58,7 @@
             <p>{{recipe.polarity.name}}</p>
             <p>{{recipe.direction.name}}</p>
             <p>{{recipe.intensity}}</p>
-            <button ng-click="PictureFormCtrl.removeFilter(PictureFormCtrl.recipes.indexOf(recipe))">X</button>
+            <button ng-click="PictureFormCtrl.removeFilter(PictureFormCtrl.recipes.indexOf(recipe))">&times;</button>
         </div>
         <canvas id="image-preview" processing-canvas></canvas>
     </div>

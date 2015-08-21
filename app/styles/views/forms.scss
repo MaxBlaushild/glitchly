@@ -10,6 +10,10 @@
     }
   }
 
+  .warning-message {
+    background-color: $blue-steel-clear;
+  }
+
   label {
     color: $blue;
     font-family: $main-text;
@@ -18,12 +22,17 @@
 
   input {
     @include glitch-form;
+    padding: 20px;
+    font-size: 24px;
   }
 
   @include placeholder-change($blue);
 
   button {
     @include glitch-button;
+    padding: 10px 15px;
+    font-size: 24px;
+    margin-top: 10px;
   }
 
   .filter {

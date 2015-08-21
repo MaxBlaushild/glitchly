@@ -15,14 +15,20 @@
         vm.editMode = false;
 
 
-        vm.upsertUser = function(user) {
-            UserFactory.upsertUser(user).then(function() {
+        vm.createUser = function(user) {
+            UserFactory.createUser(user).then(function() {
                 resetForm();
             }, function(response) {
-                resetForm();
                 vm.serverErrors = true;
-                vm.serverErrorMsg = "You must fill out all of the fields!!!!";
             });
+        };
+
+        vm.closeWarningMessage = function(){
+            vm.serverErrors = !vm.serverErrors;
+        };
+
+        vm.updateUser = function(user) {
+            UserFactory.updateUser(user);
         };
 
         vm.toggleEditMode = function(){
@@ -51,11 +57,7 @@
 
 
         vm.isCurrentUser = function(id){
-            if (AuthFactory.currentUser.id === id) {
-                return true;
-            } else {
-                return false;
-            }
+            return (AuthFactory.currentUser.id === id);
         };
 
         vm.unfollowUser = function(id){
@@ -82,16 +84,6 @@
 
         vm.cancel = function() {
             resetForm();
-        };
-
-        function handleErrors(errObj) {
-            var errString = '';
-
-            angular.forEach(errObj, function(value, key) {
-                errString += key + ': ' + value;
-            });
-
-            return errString;
         };
 
     };

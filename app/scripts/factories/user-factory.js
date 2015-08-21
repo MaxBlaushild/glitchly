@@ -36,14 +36,6 @@
             };
         };
 
-        function getProfile() {
-            var id = simpleStorage.get('gl-user-id');
-            return $http.get(appSettings.apiUrl + '/users/' + id)
-                .then(function(response) {
-                    angular.copy(response.data, user);
-                });
-        };
-
         function getUsers(search) {
             return $http.get(appSettings.apiUrl + '/users?username=' + search)
                 .then(function(response) {
@@ -85,25 +77,23 @@
                 });
         };
 
-        function upsertUser(user) {
-            if (user.id) {
-                var params = {
-                    user: user
-                };
-                return $http.patch(appSettings.apiUrl + '/users', params).then(function(response){
-                    angular.copy(response.data.user, user);
-                    location.reload();
-                });
-            } else {
-                var params = {
-                    auth: user
-                };
-                return $http.post(appSettings.apiUrl + '/register', params).success(function(response) {
-                    simpleStorage.set('gl-user-token', response.token, {TTL: 86400});
-                    $http.defaults.headers.common.Authorization = 'Token token=' + response.token;
-                    $location.path('/');
-                });
+        function updateUser(user){
+            var params = { user: user };
+            return $http.patch(appSettings.apiUrl + '/users', params).then(function(response){
+                angular.copy(response.data.user, user);
+                location.reload();
+            });
+        };
+
+        function createUser(user) {
+            var params = {
+                auth: user
             };
+            return $http.post(appSettings.apiUrl + '/register', params).success(function(response) {
+                simpleStorage.set('gl-user-token', response.token, {TTL: 86400});
+                $http.defaults.headers.common.Authorization = 'Token token=' + response.token;
+                $location.path('/');
+            });
         };
 
         function deleteUser(user) {
@@ -117,14 +107,14 @@
             removeUser: removeUser,
             getUser: getUser,
             setUser: setUser,
-            getProfile: getProfile,
             getFollowing: getFollowing,
             getFollowers: getFollowers,
             getUsers: getUsers,
             deleteUser: deleteUser,
             followUser: followUser,
             unfollowUser: unfollowUser,
-            upsertUser: upsertUser
+            updateUser: updateUser,
+            createUser: createUser
         };
     };
 

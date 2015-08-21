@@ -14,6 +14,7 @@
     function getProfile() {
       return $http.get(appSettings.apiUrl + '/refresh-navbar')
         .then(function(response) {
+          debugger;
           angular.copy(response.user, currentUser);
       });
     };

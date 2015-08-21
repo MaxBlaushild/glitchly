@@ -29,14 +29,10 @@
     };
 
     var getProfile = function(){
-      if (!vm.currentUser.username && vm.isLoggedIn) {
-        AuthFactory.getProfile();
-      }
+      AuthFactory.getProfile();
     };
 
-    $scope.$watch(function () {
-       return self.currentUser;
-    },function(user){
+    $scope.$watch(function () { return self.currentUser; }, function(user){
         if (!user && simpleStorage.get('gl-user-token')) {
           getProfile();
         }

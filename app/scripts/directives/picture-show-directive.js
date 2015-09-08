@@ -14,9 +14,6 @@
             controller: 'PictureCtrl',
             controllerAs: 'PictureCtrl',
             bindToController: true,
-            link: function(scope, element, attr){
-              scope.PictureCtrl.showPicture();
-            }
         };
     };
 

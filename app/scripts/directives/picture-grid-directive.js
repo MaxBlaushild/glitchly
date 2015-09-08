@@ -4,19 +4,16 @@
 
     angular
         .module('MainDirective')
-        .directive('glPictureGrid', glPictureGrid);
+        .directive('glPictureCloud', glPictureCloud);
 
 
-    function glPictureGrid() {
+    function glPictureCloud() {
         return {
             restrict: 'E',
-            templateUrl: 'views/picture-grid.html',
-            controller: 'PictureCtrl',
-            controllerAs: 'PictureCtrl',
+            templateUrl: 'views/picture-cloud.html',
+            controller: 'PictureCloudCtrl',
+            controllerAs: 'PictureCloudCtrl',
             bindToController: true,
-            link: function(scope){
-                scope.PictureCtrl.showPictures();
-            }
         };
     };
 

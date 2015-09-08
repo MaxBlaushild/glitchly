@@ -5,48 +5,52 @@
                 <h1>1. Choose a pic</h1>
                 <div class="form-group">
                         <label>Picture</label>
-                        <input id="picture" type="file" file-input-model="PictureFormCtrl.picture.image"/>
+                        <input id="picture" type="file" ng-class="{'goofed': PictureFormCtrl.filterFormGoof }" file-input-model="PictureFormCtrl.picture.image" required/>
                 </div>
             </div>
             <div class="col-md-12">
                 <h1>2. Add a filter</h1>
+                <div class="alert alert-dismissible warning-message" role="alert" ng-show="PictureFormCtrl.filterFormGoof">
+                    <h1>You must fill out all of the fields!</h1>
+                    <button type="button" class="close" ng-click="PictureFormCtrl.closeWarningMessage()"><span aria-hidden="true">&times;</span></button>
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Sort Type</label>
-                    <select class="form-control" ng-model="PictureFormCtrl.newRecipe.sort" ng-options="sort as sort.name for sort in PictureFormCtrl.sorts" required></select>
+                    <select class="form-control" ng-class="{'goofed': PictureFormCtrl.filterFormGoof }" ng-model="PictureFormCtrl.newRecipe.sort" ng-options="sort as sort.name for sort in PictureFormCtrl.sorts" required></select>
                 </div>
                 <div class="form-group">
                     <label>Absolute?</label>
-                    <select class="form-control" ng-model="PictureFormCtrl.newRecipe.relativity" ng-options="rel as rel.name for rel in PictureFormCtrl.relativity" required></select>
+                    <select class="form-control" ng-class="{'goofed': PictureFormCtrl.filterFormGoof }" ng-model="PictureFormCtrl.newRecipe.relativity" ng-options="rel as rel.name for rel in PictureFormCtrl.relativity" required></select>
                 </div>
                 <div class="form-group">
                     <label>Order</label>
-                    <select class="form-control" ng-model="PictureFormCtrl.newRecipe.order" ng-options="order as order.name for order in PictureFormCtrl.orders" required></select>
+                    <select class="form-control" ng-class="{'goofed': PictureFormCtrl.filterFormGoof }" ng-model="PictureFormCtrl.newRecipe.order" ng-options="order as order.name for order in PictureFormCtrl.orders" required></select>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Polarity</label>
-                    <select class="form-control" ng-model="PictureFormCtrl.newRecipe.polarity" ng-options="polarity as polarity.name for polarity in PictureFormCtrl.polarities" required></select>
+                    <select class="form-control" ng-class="{'goofed': PictureFormCtrl.filterFormGoof }" ng-model="PictureFormCtrl.newRecipe.polarity" ng-options="polarity as polarity.name for polarity in PictureFormCtrl.polarities" required></select>
                 </div>
                 <div class="form-group">
                     <label>Direction</label>
-                    <select class="form-control" ng-model="PictureFormCtrl.newRecipe.direction" ng-options="direction as direction.name for direction in PictureFormCtrl.directions" required></select>
+                    <select class="form-control" ng-class="{'goofed': PictureFormCtrl.filterFormGoof }" ng-model="PictureFormCtrl.newRecipe.direction" ng-options="direction as direction.name for direction in PictureFormCtrl.directions" required></select>
                 </div>
                 <div class="form-group">
                     <label>Intensity</label>
-                    <input name="intensity" ng-model="PictureFormCtrl.newRecipe.intensity" min="0" max="1" value="0" step=".01" type="range" required>
+                    <input name="intensity" ng-class="{'goofed': PictureFormCtrl.filterFormGoof }" ng-model="PictureFormCtrl.newRecipe.intensity" min="0" max="1" value="0" step=".01" type="range" required>
                 </div>
             </div>
             <div class="form-group">
                 <label>Pixel Hue</label>
                 <br>
                 <label ng-repeat="hue in PictureFormCtrl.hues" ng-style="{'color': '{{hue.hex}}' }" class="radio-inline">
-                    <input type="radio" name="direction" ng-model="PictureFormCtrl.newRecipe.hue" id="inlineRadio1" value="{{hue.hex}}" required> {{hue.name}}
+                    <input type="radio" name="direction" ng-class="{'goofed': PictureFormCtrl.filterFormGoof }" ng-model="PictureFormCtrl.newRecipe.hue" id="inlineRadio1" value="{{hue.hex}}" required> {{hue.name}}
                 </label>
             </div>
-            <button type="submit" ng-disabled="upsertPictureForm.$invalid">Add Recipe</button>
+            <button type="submit">Add Recipe</button>
             <button type="reset" ng-click="PictureFormCtrl.cancel()">Cancel</button>
         </form>
     </div>

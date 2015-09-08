@@ -15,6 +15,7 @@
       return $http.get(appSettings.apiUrl + '/refresh-navbar')
         .then(function(response) {
           angular.copy(response.data.user, currentUser);
+
       });
     };
 
@@ -33,8 +34,7 @@
     };
 
      var isLoggedIn = function(){
-      var data = simpleStorage.get('gl-user-token');
-      return (data);
+      return simpleStorage.get('gl-user-token');
     };
 
     return {

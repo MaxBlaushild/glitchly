@@ -20,11 +20,21 @@
     font-size: 36px;
   }
 
+  @include glitch-range-input();
+
+  .goofed.ng-invalid-required {
+    border: 3px solid red;
+    outline: 3px solid red;
+  }
+
+
+
   input {
     @include glitch-form;
     padding: 20px;
     font-size: 24px;
   }
+
 
   @include placeholder-change($blue);
 

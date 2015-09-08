@@ -11,13 +11,9 @@
         return {
             restrict: 'E',
             templateUrl: 'views/picture-list.html',
-            controller: 'PictureCtrl',
-            controllerAs: 'PictureCtrl',
-            bindToController: true,
-            link: function (scope, element) {
-                scope.PictureCtrl.showFeed();
-
-            }
+            controller: 'FeedCtrl',
+            controllerAs: 'FeedCtrl',
+            bindToController: true
         };
     };
 

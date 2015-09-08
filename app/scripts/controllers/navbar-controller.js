@@ -5,9 +5,9 @@
   angular.module('MainController').controller('NavbarCtrl', NavbarCtrl);
 
 
-  NavbarCtrl.$inject = ['$location', 'UserFactory', 'AuthFactory', '$scope', '$rootScope'];
+  NavbarCtrl.$inject = ['$location', 'UserFactory', 'AuthFactory', '$scope'];
 
-  function NavbarCtrl($location, UserFactory, AuthFactory, $scope, $rootScope){
+  function NavbarCtrl($location, UserFactory, AuthFactory, $scope){
     var vm = this;
     vm.searchString = '';
     vm.currentUser = AuthFactory.currentUser;

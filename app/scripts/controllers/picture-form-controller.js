@@ -11,20 +11,21 @@
     vm.picture = {};
     vm.recipes = [];
     vm.newRecipe = {};
+    vm.filterFormGoof = false;
 
     vm.sorts = [
-      { name: "Bubble", id: 0, description: "blah"},
-      { name: "Insertion", id: 1, description: "blah"},
-      { name: "Selection", id: 2, description: "blah"},
-      { name: "Heap", id: 3, description: "Produces an echo effect"},
-      { name: "Shell", id: 4, description: "blah"},
-      { name: "Merge", id: 5, description: "blah"},
-      { name: "Quick", id: 6, description: "blah"},
-      { name: "Smooth", id: 7, description: "Creates lines in your picture"},
-      { name: "Permute", id: 8, description: "Pixels are scattered to the wind, amount is not used"},
-      { name: "One Color", id: 9, description: "blah"},
-      { name: "Roll", id: 10, description: "blah"},
-      { name: "One Color RB", id: 11, description: "blah"}
+      { name: "Bubble", id: 0},
+      { name: "Insertion", id: 1},
+      { name: "Selection", id: 2},
+      { name: "Heap", id: 3},
+      { name: "Shell", id: 4},
+      { name: "Merge", id: 5},
+      { name: "Quick", id: 6},
+      { name: "Smooth", id: 7},
+      { name: "Permute", id: 8},
+      { name: "One Color", id: 9},
+      { name: "Roll", id: 10},
+      { name: "One Color RB", id: 11}
     ];
 
     vm.relativity = [
@@ -74,12 +75,17 @@
       });
     };
 
+    vm.closeWarningMessage = function(){
+      vm.filterFormGoof = !vm.filterFormGoof;
+    };
+
     function toggleInProgressView(){
       $('#progress-view').toggle();
       $('#form-view').toggle();
     };
 
-    var glitchPicture = function(){
+    // pjs.uploadImage is a processing method that is strongly typed, thus requiring me to split up the filters into arrays
+    function glitchPicture(){
       toggleInProgressView();
       var pjs = Processing.getInstanceById('image-preview');
       var sorts = [];
@@ -103,6 +109,11 @@
     };
 
     vm.addRecipe = function(recipe){
+      var $invalidInputs = $('input.ng-invalid-required, select.ng-invalid-required');
+      if ($invalidInputs.length > 0) {
+        vm.filterFormGoof = !vm.filterFormGoof;
+        return;
+      }
       vm.recipes.push(recipe);
       vm.newRecipe = {};
       glitchPicture();

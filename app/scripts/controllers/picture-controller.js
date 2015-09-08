@@ -10,44 +10,23 @@
     var vm = this;
     var pictureId = $routeParams.pictureId;
     vm.picture = PictureFactory.picture;
-    vm.pictures = PictureFactory.pictures;
     vm.comment = PictureFactory.comment;
-    vm.feed = PictureFactory.feed;
 
     vm.createComment = function(id){
       CommentFactory.createComment(vm.comment, $routeParams.pictureId).then(function(response){
-        addCommentToPicture(response.data.comment, id);
+        addCommentToPicture(response.data.comment);
         vm.comment = '';
-      })
+      });
     };
 
-    function addCommentToPicture(comment, id) {
+    function addCommentToPicture(comment) {
       vm.picture.comments.push(comment);
-      for (var i = 0; i < vm.pictures.length; i++) {
-          if (vm.pictures[i].id === id) {
-              vm.pictures[i].comments.push(comment);
-          };
-      };
     };
 
     function switchLikeStatus(id, flag){
       flag ? vm.picture.likes-- : vm.picture.likes++;
       vm.picture.liked_by_user = !vm.picture.liked_by_user;
-      for (var i = 0; i < vm.feed.length; i++) {
-          if (vm.feed[i].id === id) {
-              vm.feed[i].liked_by_user = !vm.feed[i].liked_by_user;
-          };
-      };
     }
-
-    vm.createPicture = function(picture) {
-      PictureFactory.createPicture(picture).then(function() {
-        resetForm();
-      }, function(response) {
-        vm.serverErrors = true;
-        vm.serverErrorMsg = handleErrors(response.data);
-      });
-    };
 
     vm.toggleLike = function(id, likedByUser){
       var lessLikes;
@@ -61,36 +40,12 @@
       PictureFactory.deletePicture(pictureId);
     };
 
-    vm.showPictures = function(){
-        PictureFactory.getPictures();
-    };
-
-    vm.showFeed = function(){
-        PictureFactory.getFeed();
-    };
-
-    vm.showPicture = function(){
+    function init(){
         PictureFactory.getPicture(pictureId);
     };
 
-    function resetForm() {
-        PictureFactory.setPicture({});
-        vm.serverErrors = false;
-    };
+    init();
 
-    vm.cancel = function() {
-        resetForm();
-    };
-
-    function handleErrors(errObj) {
-        var errString = '';
-
-        angular.forEach(errObj, function(value, key) {
-            errString += key + ': ' + value;
-        });
-
-        return errString;
-    };
   };
 
 })();

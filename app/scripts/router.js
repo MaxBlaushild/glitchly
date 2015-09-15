@@ -11,10 +11,14 @@
         templateUrl: 'views/login-page.html'
       })
       .when('/followers', {
-        templateUrl: 'views/user-list-view.html'
+        templateUrl: 'views/user-list-view.html',
+        controller: 'followersController',
+        controllerAs: 'UserCtrl'
       })
       .when('/following', {
-        templateUrl: 'views/user-list-view.html'
+        templateUrl: 'views/user-list-view.html',
+        controller: 'followingController',
+        controllerAs: 'UserCtrl'
       })
       .when('/try-glitchly', {
         templateUrl: 'views/landing-page.html'
@@ -32,7 +36,9 @@
         templateUrl: 'views/new-picture-view.html'
       })
       .when('/users', {
-        templateUrl: 'views/user-list-view.html'
+        templateUrl: 'views/user-list-view.html',
+        controller: 'usersController',
+        controllerAs: 'UserCtrl'
       })
       .when('/users/:userId', {
         templateUrl: 'views/user-show-view.html'

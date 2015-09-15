@@ -26,11 +26,11 @@
         $location.search('username', searchString);
         vm.searchString = '';
       });
-    };
+    }
 
     var getProfile = function(){
       AuthFactory.getProfile();
-    };
+    }
 
     $scope.$watch(function () { return self.currentUser; }, function(user){
         if (!user && simpleStorage.get('gl-user-token')) {
@@ -39,7 +39,7 @@
     });
 
 
-  };
+  }
 
 })();
 

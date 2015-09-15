@@ -17,11 +17,11 @@
         addCommentToPicture(response.data.comment);
         vm.comment = '';
       });
-    };
+    }
 
     function addCommentToPicture(comment) {
       vm.picture.comments.push(comment);
-    };
+    }
 
     function switchLikeStatus(id, flag){
       flag ? vm.picture.likes-- : vm.picture.likes++;
@@ -34,18 +34,18 @@
       (likedByUser ? LikeFactory.unlike(id) : LikeFactory.like(id)).then(function(response){
         switchLikeStatus(id, lessLikes);
       })
-    };
+    }
 
     vm.deletePicture = function(){
       PictureFactory.deletePicture(pictureId);
-    };
+    }
 
     function init(){
         PictureFactory.getPicture(pictureId);
-    };
+    }
 
     init();
 
-  };
+  }
 
 })();

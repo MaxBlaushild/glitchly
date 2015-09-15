@@ -11,6 +11,8 @@
     function UserFactory($http, $window, $location, appSettings) {
         var users = [];
         var user = {};
+        var followers = [];
+        var following = [];
         var search;
 
         function setUser(newUser) {
@@ -46,35 +48,23 @@
         function getFollowers() {
             return $http.get(appSettings.apiUrl + '/followers')
                 .then(function(response) {
-                    angular.copy(response.data.users, users);
+                    angular.copy(response.data.users, followers);
                 });
         };
 
         function getFollowing() {
             return $http.get(appSettings.apiUrl + '/following')
                 .then(function(response) {
-                    angular.copy(response.data.users, users);
+                    angular.copy(response.data.users, following);
                 });
         };
 
         function followUser(id){
-            return $http.get(appSettings.apiUrl + '/users/' + id + '/follow')
-                .then(function(response) {
-                    angular.copy(response.data.user, user);
-                    if (users.length > 0 ){
-                        users[findUserIndexById(id)] = response.data.user;
-                    }
-                });
+            return $http.get(appSettings.apiUrl + '/users/' + id + '/follow');
         };
 
         function unfollowUser(id){
-            return $http.get(appSettings.apiUrl + '/users/' + id + '/unfollow')
-                .then(function(response) {
-                    angular.copy(response.data.user, user);
-                    if (users.length > 0 ){
-                        users[findUserIndexById(id)] = response.data.user;
-                    }
-                });
+            return $http.get(appSettings.apiUrl + '/users/' + id + '/unfollow');
         };
 
         function updateUser(user){
@@ -109,6 +99,8 @@
             setUser: setUser,
             getFollowing: getFollowing,
             getFollowers: getFollowers,
+            followers: followers,
+            following: following,
             getUsers: getUsers,
             deleteUser: deleteUser,
             followUser: followUser,

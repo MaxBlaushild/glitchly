@@ -73,16 +73,16 @@
         vm.serverErrors = true;
         vm.serverErrorMsg = handleErrors(response.data);
       });
-    };
+    }
 
     vm.closeWarningMessage = function(){
       vm.filterFormGoof = !vm.filterFormGoof;
-    };
+    }
 
     function toggleInProgressView(){
       $('#progress-view').toggle();
       $('#form-view').toggle();
-    };
+    }
 
     // pjs.uploadImage is a processing method that is strongly typed, thus requiring me to split up the filters into arrays
     function glitchPicture(){
@@ -106,7 +106,7 @@
       });
 
       pjs.uploadImage(vm.picture.image, sorts, polarities, orders, relativities, hues, intensities, directions);
-    };
+    }
 
     vm.addRecipe = function(recipe){
       var $invalidInputs = $('input.ng-invalid-required, select.ng-invalid-required');
@@ -117,29 +117,29 @@
       vm.recipes.push(recipe);
       vm.newRecipe = {};
       glitchPicture();
-    };
+    }
 
     function resetForm() {
       vm.recipes = [];
       vm.newRecipe = {};
-    };
+    }
 
     vm.cancel = function() {
         resetForm();
-    };
+    }
 
     vm.removeFilter = function(index){
       vm.recipes.splice(index, 1);
       glitchPicture();
-    };
+    }
 
     vm.uploadImage = function(){
       glitchPicture();
-    };
+    }
 
     vm.resetPage = function(){
       location.reload();
-    };
+    }
 
     function handleErrors(errObj) {
         var errString = '';

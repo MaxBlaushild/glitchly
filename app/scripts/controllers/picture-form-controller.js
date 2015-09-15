@@ -108,15 +108,22 @@
       pjs.uploadImage(vm.picture.image, sorts, polarities, orders, relativities, hues, intensities, directions);
     }
 
-    vm.addRecipe = function(recipe){
+    function validateForm(){
       var $invalidInputs = $('input.ng-invalid-required, select.ng-invalid-required');
       if ($invalidInputs.length > 0) {
-        vm.filterFormGoof = !vm.filterFormGoof;
-        return;
+        vm.filterFormGoof = true;
+      } else {
+        vm.filterFormGoof = false;
       }
-      vm.recipes.push(recipe);
-      vm.newRecipe = {};
-      glitchPicture();
+    }
+
+    vm.addRecipe = function(recipe){
+      validateForm();
+      if (!vm.filterFormGoof){
+        vm.recipes.push(recipe);
+        vm.newRecipe = {};
+        glitchPicture();
+      }
     }
 
     function resetForm() {

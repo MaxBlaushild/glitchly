@@ -13,19 +13,6 @@
         vm.search = UserFactory.search;
         vm.editMode = false;
 
-
-        vm.createUser = function(user) {
-            UserFactory.createUser(user).then(function() {
-                resetForm();
-            }, function(response) {
-                vm.serverErrors = true;
-            });
-        }
-
-        vm.closeWarningMessage = function(){
-            vm.serverErrors = !vm.serverErrors;
-        }
-
         vm.updateUser = function(user) {
             UserFactory.updateUser(user);
         }

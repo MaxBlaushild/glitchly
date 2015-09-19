@@ -11,8 +11,8 @@
       return {
           restrict: 'E',
           templateUrl: 'views/sign-up-form.html',
-          controller: 'UserCtrl',
-          controllerAs: 'UserCtrl',
+          controller: 'SignUpFormCtrl',
+          controllerAs: 'SignUpFormCtrl',
           bindToController: true
       };
   };

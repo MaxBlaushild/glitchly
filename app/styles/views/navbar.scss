@@ -31,5 +31,24 @@
     }
   }
 
+  a:focus {
+    background-color: $blue;
+  }
+
+  .active {
+    @include stroke(2, $blue);
+  }
+
+  .notification-count {
+    color: $blue;
+  }
+
+  .dropdown-menu {
+    background-color: $orange;
+
+    a:hover {
+      background-color: $blue;
+    }
+  }
 
 }

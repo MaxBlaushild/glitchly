@@ -4,24 +4,14 @@
 
   angular
   .module('frontendApp')
-  .factory('AuthFactory', AuthFactory);
+  .service('AuthService', AuthService);
 
-  AuthFactory.$inject = ['$http', '$location', '$window', 'appSettings'];
+  AuthService.$inject = ['$http', '$location', 'appSettings'];
 
-   function AuthFactory($http, $location, $window, appSettings) {
-    var currentUser = {};
-
-    function getProfile() {
-      return $http.get(appSettings.apiUrl + '/refresh-navbar')
-        .then(function(response) {
-          angular.copy(response.data.user, currentUser);
-
-      });
-    };
+   function AuthService($http, $location, appSettings) {
 
     var login = function(credentials){
       return $http.post(appSettings.apiUrl + '/login', credentials).success(function(response){
-        angular.copy(response.user, currentUser);
         simpleStorage.set('gl-user-token', response.token);
         $http.defaults.headers.common.Authorization = 'Token token=' + response.token;
         $location.path('');
@@ -40,8 +30,6 @@
     return {
       login: login,
       logOut: logOut,
-      getProfile: getProfile,
-      currentUser: currentUser,
       isLoggedIn: isLoggedIn
     };
 

@@ -15,6 +15,7 @@
         var following = [];
         var search;
 
+
         function setUser(newUser) {
             angular.copy(newUser, user);
         };

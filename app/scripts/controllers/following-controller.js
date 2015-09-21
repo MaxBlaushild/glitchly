@@ -2,7 +2,7 @@
 
 (function(){
 
-  var FollowingController = function(UserFactory, AuthFactory){
+  var FollowingController = function(UserFactory, CurrentUserFactory){
     var vm = this;
     vm.users = UserFactory.following;
 
@@ -25,7 +25,7 @@
     }
 
     vm.isCurrentUser = function(id){
-      return (AuthFactory.currentUser.id === id);
+      return (CurrentUserFactory.currentUser.id === id);
     }
 
     vm.unfollowUser = function(id){
@@ -41,7 +41,7 @@
   }
 
 
-  FollowingController.$inject = ['UserFactory', 'AuthFactory'];
+  FollowingController.$inject = ['UserFactory', 'CurrentUserFactory'];
 
   angular.module('frontendApp').controller('followingController', FollowingController);
 

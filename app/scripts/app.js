@@ -4,17 +4,19 @@ angular
   .module('frontendApp', [
     'ngRoute',
     'MainController',
+    'infinite-scroll',
     'MainDirective'
   ])
   .config(function ($httpProvider) {
     $httpProvider.interceptors.push('fourOhOneInterceptor');
-  })
-  .run(function($rootScope, $http, $window, $location, $routeParams, AuthFactory, UserFactory, PictureFactory) {
 
-    if (AuthFactory.isLoggedIn()) {
-      var data = simpleStorage.get('gl-user-token');
-      $http.defaults.headers.common.Authorization = 'Token token=' + data;
+    var authToken = simpleStorage.get('gl-user-token');
+    if (authToken) {
+      $httpProvider.defaults.headers.common.Authorization = 'Token token=' + authToken;
     }
+
+  })
+  .run(function($rootScope, $http, $window, $location, $routeParams, AuthService) {
 
     var routesThatDontRequireAuth = ['/login', '/try-glitchly', '/sign-up'];
 
@@ -24,7 +26,7 @@ angular
 
     $rootScope.$on('$routeChangeStart', function(){
 
-      if (!routeClean($location.url()) && !AuthFactory.isLoggedIn()) {
+      if (!routeClean($location.url()) && !AuthService.isLoggedIn()) {
         // redirect back to login
         $location.path('/try-glitchly');
       }

@@ -8,8 +8,8 @@
     return {
       restrict: 'E',
       templateUrl: 'views/login-form.html',
-      controller: 'AuthCtrl',
-      controllerAs: 'AuthCtrl',
+      controller: 'LoginFormCtrl',
+      controllerAs: 'LoginFormCtrl',
       bindToController: true,
       scope: {
         credentials: '&'

@@ -21,15 +21,17 @@
         <input ng-model="PictureCtrl.comment" type="text" name="comment"/>
         <button ng-click="PictureCtrl.createComment(PictureCtrl.picture.id)"> New Comment </button>
       </form>
-      <div ng-repeat="comment in PictureCtrl.picture.comments | limitTo:5" class="media">
-        <div class="media-left">
-          <a href="#/users/{{comment.user.id}}">
-            <img class="media-object" ng-src="{{comment.user.thumb_url}}"/>
-          </a>
-        </div>
-        <div class="media-body">
-          <a href="#/users/{{comment.user.id}}">{{comment.user.username }}</a>
-          <h4>{{ comment.body}}</h4>
+      <div class="comments">
+        <div ng-repeat="comment in PictureCtrl.picture.comments" class="media">
+          <div class="media-left">
+            <a href="#/users/{{comment.user.id}}">
+              <img class="media-object" ng-src="{{comment.user.thumb_url}}"/>
+            </a>
+          </div>
+          <div class="media-body">
+            <a href="#/users/{{comment.user.id}}">{{comment.user.username }}</a>
+            <h4>{{ comment.body}}</h4>
+          </div>
         </div>
       </div>
     </div>

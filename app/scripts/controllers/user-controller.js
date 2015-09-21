@@ -4,9 +4,9 @@
 
     angular.module('MainController').controller('UserCtrl', UserCtrl);
 
-    UserCtrl.$inject = ['$routeParams','UserFactory', 'AuthFactory'];
+    UserCtrl.$inject = ['$routeParams','UserFactory', 'CurrentUserFactory'];
 
-    function UserCtrl($routeParams, UserFactory, AuthFactory) {
+    function UserCtrl($routeParams, UserFactory, CurrentUserFactory) {
         var vm = this;
         var userId = $routeParams.userId;
         vm.user = UserFactory.user;
@@ -35,7 +35,7 @@
 
 
         vm.isCurrentUser = function(id){
-            return (AuthFactory.currentUser.id === id);
+            return (CurrentUserFactory.currentUser.id === id);
         }
 
         vm.unfollowUser = function(id){

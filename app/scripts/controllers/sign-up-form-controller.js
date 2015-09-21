@@ -4,15 +4,16 @@
 
     angular.module('MainController').controller('SignUpFormCtrl', SignUpFormCtrl);
 
-    SignUpFormCtrl.$inject = ['UserFactory', 'AuthFactory'];
+    SignUpFormCtrl.$inject = ['UserFactory', 'CurrentUserFactory'];
 
-    function SignUpFormCtrl(UserFactory, AuthFactory) {
+    function SignUpFormCtrl(UserFactory, CurrentUserFactory) {
       var vm = this;
       vm.user = UserFactory.user;
 
       vm.createUser = function(user) {
         UserFactory.createUser(user).then(function() {
           resetForm();
+          CurrentUserFactory.getCurrentUser();
         }, function(response) {
           vm.serverErrors = true;
         });

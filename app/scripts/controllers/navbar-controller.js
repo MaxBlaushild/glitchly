@@ -5,12 +5,14 @@
   angular.module('MainController').controller('NavbarCtrl', NavbarCtrl);
 
 
-  NavbarCtrl.$inject = ['$location', 'UserFactory', 'AuthFactory', '$scope', 'NotificationFactory'];
+  NavbarCtrl.$inject = ['$location', 'UserFactory', 'AuthService', '$scope', 'NotificationFactory', 'CurrentUserFactory'];
 
-  function NavbarCtrl($location, UserFactory, AuthFactory, $scope, NotificationFactory){
+  function NavbarCtrl($location, UserFactory, AuthService, $scope, NotificationFactory, CurrentUserFactory){
     var vm = this;
     vm.searchString = '';
-    vm.currentUser = AuthFactory.currentUser;
+    vm.currentUser = CurrentUserFactory.currentUser;
+    vm.notifications = NotificationFactory.notifications;
+    vm.notificationPage = 1;
 
     function findNotificationIndexById(id){
       for (var i = 0; i < vm.currentUser.notifications.length; i++) {
@@ -21,11 +23,11 @@
     }
 
     vm.isLoggedIn = function(){
-      return AuthFactory.isLoggedIn();
+      return AuthService.isLoggedIn();
     }
 
     vm.logOut = function(){
-      AuthFactory.logOut();
+      AuthService.logOut();
     }
 
     vm.searchUsers = function(searchString){
@@ -44,8 +46,13 @@
       });
     }
 
+    vm.getMoreNotifications = function(){
+      console.log('hey');
+      // NotificationFactory.getMoreNotifications(){};
+    }
+
     var getProfile = function(){
-      AuthFactory.getProfile();
+      CurrentUserFactory.getCurrentUser();
     }
 
 

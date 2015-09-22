@@ -5,22 +5,15 @@
   angular.module('MainController').controller('NavbarCtrl', NavbarCtrl);
 
 
-  NavbarCtrl.$inject = ['$location', 'UserFactory', 'AuthService', '$scope', 'NotificationFactory', 'CurrentUserFactory'];
+  NavbarCtrl.$inject = ['$location', 'UserFactory', 'AuthService', '$scope', '$timeout', 'NotificationFactory', 'CurrentUserFactory'];
 
-  function NavbarCtrl($location, UserFactory, AuthService, $scope, NotificationFactory, CurrentUserFactory){
+  function NavbarCtrl($location, UserFactory, AuthService, $scope, $timeout, NotificationFactory, CurrentUserFactory){
     var vm = this;
     vm.searchString = '';
     vm.currentUser = CurrentUserFactory.currentUser;
     vm.notifications = NotificationFactory.notifications;
     vm.notificationPage = 1;
-
-    function findNotificationIndexById(id){
-      for (var i = 0; i < vm.currentUser.notifications.length; i++) {
-        if (vm.currentUser.notifications[i].id === id) {
-           return i;
-        }
-      }
-    }
+    vm.hasMoreNotifications = true;
 
     vm.isLoggedIn = function(){
       return AuthService.isLoggedIn();
@@ -40,16 +33,23 @@
 
     vm.followNotification = function(notificationId, pictureId){
       NotificationFactory.deactivateNotification(notificationId).then(function(){
-        var index = findNotificationIndexById(notificationId);
         getProfile();
         $location.path('/pictures/' + pictureId);
       });
     }
 
+    vm.checkNotificationLength = function(response){
+      if (response.data.notifications.length === 0) {
+        $timeout(function(){
+          vm.hasMoreNotifications = false;
+        });
+      }
+    }
+
     vm.getMoreNotifications = function(){
-      // console.log('hey');
       vm.notificationPage++;
       NotificationFactory.getMoreNotifications(vm.notificationPage).then(function(response){
+        vm.checkNotificationLength(response);
         response.data.notifications.forEach(function(notification){
           vm.currentUser.notifications.push(notification);
         });
@@ -60,13 +60,11 @@
       CurrentUserFactory.getCurrentUser();
     }
 
-
     $scope.$watch(function () { return self.currentUser; }, function(user){
         if (!user && simpleStorage.get('gl-user-token')) {
           getProfile();
         }
     });
-
 
   }
 

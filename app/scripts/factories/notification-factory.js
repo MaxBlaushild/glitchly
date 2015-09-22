@@ -3,7 +3,6 @@
 (function(){
 
   function NotificationFactory($http, appSettings) {
-    var notifications = [];
 
     var deactivateNotification = function(notificationId){
       var notification = { notification: {  }  };
@@ -15,7 +14,6 @@
     }
 
     return {
-      notifications: notifications,
       getMoreNotifications: getMoreNotifications,
       deactivateNotification: deactivateNotification
     };

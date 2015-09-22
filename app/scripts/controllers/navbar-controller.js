@@ -11,9 +11,16 @@
     var vm = this;
     vm.searchString = '';
     vm.currentUser = CurrentUserFactory.currentUser;
-    vm.notifications = NotificationFactory.notifications;
     vm.notificationPage = 1;
     vm.hasMoreNotifications = true;
+
+    vm.getNotificationIndexById = function(id) {
+      for (var i=0;i < vm.currentUser.notifications.length; i++){
+        if (vm.currentUser.notifications[i].id === id ) {
+          return i;
+        }
+      }
+    }
 
     vm.isLoggedIn = function(){
       return AuthService.isLoggedIn();
@@ -31,9 +38,15 @@
       });
     }
 
+    vm.toggleNotification = function(index){
+      vm.currentUser.notifications[index].active = false;
+      vm.currentUser.active_notifications--;
+    }
+
     vm.followNotification = function(notificationId, pictureId){
       NotificationFactory.deactivateNotification(notificationId).then(function(){
-        getProfile();
+        var index = vm.getNotificationIndexById(notificationId);
+        vm.toggleNotification(index);
         $location.path('/pictures/' + pictureId);
       });
     }

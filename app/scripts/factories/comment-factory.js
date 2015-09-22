@@ -17,8 +17,8 @@
       });
     }
 
-    var getMoreComments = function(page) {
-      return $http.get(appSettings.apiUrl + '/comments?page=' + page);
+    var getMoreComments = function(page, pictureId) {
+      return $http.get(appSettings.apiUrl + '/pictures/' + pictureId + '/comments?page=' + page);
     }
 
     return {

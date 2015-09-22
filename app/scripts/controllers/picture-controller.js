@@ -23,7 +23,9 @@
 
     function addCommentToPicture(comment) {
       vm.picture.comments.unshift(comment);
-      vm.picture.comments.pop();
+      if (vm.picture.comments.length > 5){
+        vm.picture.comments.pop();
+      }
     }
 
     function switchLikeStatus(id, flag){
@@ -41,7 +43,7 @@
 
     vm.getMoreComments = function(){
       vm.commentPage++;
-      CommentFactory.getMoreComments(vm.commentPage).then(function(response){
+      CommentFactory.getMoreComments(vm.commentPage, vm.picture.id).then(function(response){
         vm.checkCommentLength(response);
         response.data.comments.forEach(function(comment){
           vm.picture.comments.push(comment);

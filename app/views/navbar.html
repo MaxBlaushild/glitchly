@@ -15,10 +15,11 @@
             <li ng-if="NavbarCtrl.isLoggedIn()"><a class="nav-not-pic" href='#/glitch-a-pic'>Add Pic</a></li>
             <li ng-if="NavbarCtrl.isLoggedIn()"><a class="nav-not-pic" href='#/discover'>Discover</a></li>
             <li ng-if="NavbarCtrl.isLoggedIn()"><a class="nav-not-pic" href='javascript:void(0)' ng-click="NavbarCtrl.logOut()">Logout</a></li>
-            <li ng-if="NavbarCtrl.isLoggedIn()" class="dropdown">
+            <li ng-if="NavbarCtrl.isLoggedIn()" class="dropdown" >
                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications <span class="notification-count" ng-show="NavbarCtrl.currentUser.active_notifications > 0">{{NavbarCtrl.currentUser.active_notifications}} </span><span class="caret"></span></a>
-                <ul class="dropdown-menu" infinite-scroll="NavbarCtrl.getMoreNotifications()">
+                <ul class="dropdown-menu">
                     <li ng-repeat="noti in NavbarCtrl.currentUser.notifications"><a ng-class="{'active': noti.active }" href="javascript:void(0)" ng-click="NavbarCtrl.followNotification(noti.id, noti.picture_id)">{{noti.description}}</a></li>
+                    <li class="keepopen"><a href="javascript:void(0)" ng-click="NavbarCtrl.getMoreNotifications()" class="keepopen" gl-dropdown-no-close>Show More</a></li>
                 </ul>
             </li>
             <li ng-if="!NavbarCtrl.isLoggedIn()" pulsing-nav><a class="nav-not-pic" href='#/login'>Login</a></li>

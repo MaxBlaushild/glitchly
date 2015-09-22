@@ -47,8 +47,13 @@
     }
 
     vm.getMoreNotifications = function(){
-      console.log('hey');
-      // NotificationFactory.getMoreNotifications(){};
+      // console.log('hey');
+      vm.notificationPage++;
+      NotificationFactory.getMoreNotifications(vm.notificationPage).then(function(response){
+        response.data.notifications.forEach(function(notification){
+          vm.currentUser.notifications.push(notification);
+        });
+      });
     }
 
     var getProfile = function(){

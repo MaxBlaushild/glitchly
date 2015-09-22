@@ -18,7 +18,7 @@
       </a>
       <div class="media">
         <div class="media-body">
-          <a href="#/pictures/{{picture.id}}"><h4>{{ picture.comments.length}} comments</h4></a>
+          <a href="#/pictures/{{picture.id}}"><h4>{{ picture.comment_count}} comments</h4></a>
         </div>
         <div class="media-right">
           <div class="heart" ng-class="{liked: picture.liked_by_user}" ng-click="FeedCtrl.toggleLike(picture.id, picture.liked_by_user)"></div>

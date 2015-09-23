@@ -33,7 +33,7 @@
             <h4>{{ comment.body}}</h4>
           </div>
         </div>
-        <button ng-show="PictureCtrl.hasMoreComments" ng-click="PictureCtrl.getMoreComments()">Show More</button>
+        <button ng-show="PictureCtrl.hasMoreComments" ng-hide="PictureCtrl.picture.comments.length === 0" ng-click="PictureCtrl.getMoreComments()">Show More</button>
       </div>
     </div>
   </div>

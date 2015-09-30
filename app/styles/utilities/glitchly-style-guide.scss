@@ -15,9 +15,6 @@ $orange-crush-clear: rgba(255, 102, 0, .5);
   position: fixed;
   background-color: black;
   top: 0;
-  @media (max-width: 800px) {
-    display: none;
-  }
 };
 
 p, h1, h2, h3, h4, a {

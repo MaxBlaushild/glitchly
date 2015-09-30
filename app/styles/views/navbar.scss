@@ -25,13 +25,13 @@
     font-size: 24px;
   }
 
-  @media all and (max-width: 1000px) and (min-width: 650px) {
+  @media all and (max-width: 1100px) and (min-width: 650px) {
     li > a {
       font-size: 14px;
     }
   }
 
-  @media (max-height: 800px) {
+  @media (min-height: 800px) {
     .search {
       display: none;
     }

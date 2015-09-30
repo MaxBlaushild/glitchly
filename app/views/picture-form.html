@@ -15,7 +15,7 @@
                     <button type="button" class="close" ng-click="PictureFormCtrl.closeWarningMessage()"><span aria-hidden="true">&times;</span></button>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-xs-6">
                 <div class="form-group">
                     <label>Sort Type</label>
                     <select class="form-control" ng-class="{'goofed': PictureFormCtrl.filterFormGoof }" ng-model="PictureFormCtrl.newRecipe.sort" ng-options="sort as sort.name for sort in PictureFormCtrl.sorts" required></select>
@@ -29,7 +29,7 @@
                     <select class="form-control" ng-class="{'goofed': PictureFormCtrl.filterFormGoof }" ng-model="PictureFormCtrl.newRecipe.order" ng-options="order as order.name for order in PictureFormCtrl.orders" required></select>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-xs-6">
                 <div class="form-group">
                     <label>Polarity</label>
                     <select class="form-control" ng-class="{'goofed': PictureFormCtrl.filterFormGoof }" ng-model="PictureFormCtrl.newRecipe.polarity" ng-options="polarity as polarity.name for polarity in PictureFormCtrl.polarities" required></select>

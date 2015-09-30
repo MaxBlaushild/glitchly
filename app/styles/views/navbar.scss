@@ -35,7 +35,7 @@
     z-index: 9999;
   }
 
-  @media (min-height: 800px) {
+  @media (max-width: 1000px) {
     .search {
       display: none;
     }

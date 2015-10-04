@@ -12,9 +12,9 @@
 
     function switchLikeStatus(id){
       for (var i = 0; i < vm.feed.length; i++) {
-          if (vm.feed[i].id === id) {
-              vm.feed[i].liked_by_user = !vm.feed[i].liked_by_user;
-          }
+        if (vm.feed[i].id === id) {
+            vm.feed[i].liked_by_user = !vm.feed[i].liked_by_user;
+        }
       }
     }
 

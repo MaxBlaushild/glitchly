@@ -18,7 +18,7 @@
             <li ng-if="NavbarCtrl.isLoggedIn()" class="dropdown">
                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications <span class="notification-count" ng-show="NavbarCtrl.currentUser.active_notifications > 0">{{NavbarCtrl.currentUser.active_notifications}} </span><span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li ng-repeat="noti in NavbarCtrl.currentUser.notifications"><a ng-class="{'active': noti.active }" href="javascript:void(0)" ng-click="NavbarCtrl.followNotification(noti.id, noti.picture.id)"><img class="noti-img" ng-src="https://s3.amazonaws.com/testbucketfoshosies/{{noti.picture.id}}/{{noti.picture.image_file_name}}"/>{{noti.description}}</a></li>
+                    <li ng-repeat="noti in NavbarCtrl.notifications"><a ng-class="{'active': noti.active }" href="javascript:void(0)" ng-click="NavbarCtrl.followNotification(noti.id, noti.picture.id)"><img class="noti-img" ng-src="https://s3.amazonaws.com/testbucketfoshosies/{{noti.picture.id}}/{{noti.picture.image_file_name}}"/>{{noti.description}}</a></li>
                     <li ng-show="NavbarCtrl.hasMoreNotifications" class="keepopen" ng-click="NavbarCtrl.getMoreNotifications()" ><a href="javascript:void(0)" class="keepopen" gl-dropdown-no-close>Show More</a></li>
                 </ul>
             </li>

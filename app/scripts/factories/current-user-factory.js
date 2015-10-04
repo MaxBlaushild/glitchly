@@ -23,7 +23,7 @@
 
   }
 
-  CurrentUserFactory.$inject = ['$http', 'appSettings'];
+  CurrentUserFactory.$inject = ['$http', 'appSettings', 'NotificationFactory'];
 
 })();
 

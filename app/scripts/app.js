@@ -4,10 +4,13 @@ angular
   .module('frontendApp', [
     'ngRoute',
     'MainController',
+    'infinite-scroll',
     'MainDirective'
   ])
   .config(function ($httpProvider) {
+
     $httpProvider.interceptors.push('fourOhOneInterceptor');
+
     var authToken = simpleStorage.get('gl-user-token');
     if (authToken) {
       $httpProvider.defaults.headers.common.Authorization = 'Token token=' + authToken;

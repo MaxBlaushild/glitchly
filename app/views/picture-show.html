@@ -22,17 +22,7 @@
         <button ng-click="PictureCtrl.createComment(PictureCtrl.picture.id)"> New Comment </button>
       </form>
       <div class="comments">
-        <div ng-repeat="comment in PictureCtrl.picture.comments" class="media">
-          <div class="media-left">
-            <a href="#/users/{{comment.user.id}}">
-              <img class="media-object" ng-src="{{comment.user.thumb_url}}"/>
-            </a>
-          </div>
-          <div class="media-body">
-            <a href="#/users/{{comment.user.id}}">{{comment.user.username }}</a>
-            <h4>{{ comment.body}}</h4>
-          </div>
-        </div>
+        <gl-comment ng-repeat="comment in PictureCtrl.picture.comments"></gl-comment>
         <button ng-show="PictureCtrl.hasMoreComments" ng-hide="PictureCtrl.picture.comments.length === 0" ng-click="PictureCtrl.getMoreComments()">Show More</button>
       </div>
     </div>

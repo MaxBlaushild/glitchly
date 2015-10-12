@@ -18,16 +18,21 @@
             angular.copy(newPicture, picture);
         };
 
-        function getFeed(id) {
-            return $http.get(appSettings.apiUrl)
+        function getFeed(page) {
+            return $http.get(appSettings.apiUrl + "?page=" + page)
                 .then(function(response) {
                     angular.copy(response.data.pictures, feed);
             });
         };
 
+        function getMoreFeed(page) {
+            return $http.get(appSettings.apiUrl + "?page=" + page);
+        };
+
         function getPicture(id) {
             return $http.get(appSettings.apiUrl + '/pictures/' + id)
                 .then(function(response) {
+                    debugger;
                     angular.copy(response.data.picture, picture);
             });
         };
@@ -69,6 +74,7 @@
             setPicture: setPicture,
             createPicture: createPicture,
             getPictures: getPictures,
+            getMoreFeed: getMoreFeed,
             getPicture: getPicture
         };
     };

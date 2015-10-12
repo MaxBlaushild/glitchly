@@ -9,6 +9,7 @@
   function FeedCtrl(PictureFactory, LikeFactory){
     var vm = this;
     vm.feed = PictureFactory.feed;
+    vm.page = 1;
 
     function switchLikeStatus(id){
       for (var i = 0; i < vm.feed.length; i++) {
@@ -24,8 +25,17 @@
       });
     }
 
+    vm.getMoreFeed = function(){
+      vm.page++;
+      PictureFactory.getMoreFeed(vm.page).then(function(response) {
+        response.data.pictures.forEach(function(picture){
+            vm.feed.push(picture);
+        });
+      });
+    }
+
     function init(){
-        PictureFactory.getFeed();
+      PictureFactory.getFeed(vm.page);
     }
 
     init();

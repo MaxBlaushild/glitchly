@@ -23,6 +23,7 @@
 
       var makeHandler = function(handler, close) {
         return function(e) {
+                  debugger;
           if (close) {
             close();
           }

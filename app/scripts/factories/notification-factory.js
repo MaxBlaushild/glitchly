@@ -41,6 +41,7 @@
       });
 
       notificationWatcher.on('error', function(e){
+        debugger;
         console.log(Date(Date.now()));
       });
 

@@ -24,7 +24,7 @@
               if (scope.FeedCtrl.feed.length % 14 == 0) {
                 scope.FeedCtrl.getMoreFeed();
               } else {
-                scope.$destroy();
+                $(window).unbind();
               }
 
             }

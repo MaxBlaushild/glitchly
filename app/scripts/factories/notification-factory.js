@@ -29,7 +29,7 @@
     var createNotificationWatchBeat = function(){
       var notificationWatcher = WatcherFactory.createWatcher(appSettings.apiUrl + '/notifications/watch', {
           Authorization: 'Token token=' + simpleStorage.get('gl-user-token'),
-          timeout: 60
+          timeout: 45
       });
 
       notificationWatcher.on('change', function(jNotification){
@@ -41,8 +41,7 @@
       });
 
       notificationWatcher.on('error', function(e){
-        debugger;
-        console.log(Date(Date.now()));
+
       });
 
       return notificationWatcher;
@@ -51,10 +50,9 @@
     var watchForNewNotifications = function(){
       var notificationWatcher = createNotificationWatchBeat();
       setInterval(function(){
-        notificationWatcher.close();
         notificationWatcher = null;
         notificationWatcher = createNotificationWatchBeat();
-      }, 60000);
+      }, 45000);
     }
 
     return {

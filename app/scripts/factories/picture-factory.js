@@ -32,7 +32,6 @@
         function getPicture(id) {
             return $http.get(appSettings.apiUrl + '/pictures/' + id)
                 .then(function(response) {
-                    debugger;
                     angular.copy(response.data.picture, picture);
             });
         };

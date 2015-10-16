@@ -62,7 +62,7 @@
     var initUser = function(){
       CurrentUserFactory.getCurrentUser();
       vm.getMoreNotifications();
-      // NotificationFactory.watchForNewNotifications();
+      NotificationFactory.watchForNewNotifications();
     }
 
     $scope.$watch(function () { return self.currentUser; }, function(user){

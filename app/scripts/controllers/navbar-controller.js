@@ -12,7 +12,7 @@
     vm.searchString = '';
     vm.currentUser = CurrentUserFactory.currentUser;
     vm.notifications = NotificationFactory.notifications;
-    vm.notificationPage = 0;
+    vm.notificationPage = 1;
     vm.hasMoreNotifications = NotificationFactory.hasMoreNotifications;
 
     vm.getNotificationIndexById = function(id) {
@@ -59,15 +59,15 @@
     }
 
 
-    var initUser = function(){
+    var init = function(){
       CurrentUserFactory.getCurrentUser();
-      vm.getMoreNotifications();
+      NotificationFactory.getMoreNotifications(vm.notificationPage);
       NotificationFactory.watchForNewNotifications();
     }
 
     $scope.$watch(function () { return self.currentUser; }, function(user){
         if (!user && simpleStorage.get('gl-user-token')) {
-          initUser();
+          init();
         }
     });
 

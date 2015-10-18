@@ -4,16 +4,16 @@
 
     angular.module('MainController').controller('SignUpFormCtrl', SignUpFormCtrl);
 
-    SignUpFormCtrl.$inject = ['UserFactory', 'CurrentUserFactory'];
+    SignUpFormCtrl.$inject = ['UserFactory', 'CurrentUserFactory', 'NotificationFactory'];
 
-    function SignUpFormCtrl(UserFactory, CurrentUserFactory) {
+    function SignUpFormCtrl(UserFactory, CurrentUserFactory, NotificationFactory) {
       var vm = this;
       vm.user = UserFactory.user;
 
       vm.createUser = function(user) {
         UserFactory.createUser(user).then(function() {
           resetForm();
-          CurrentUserFactory.getCurrentUser();
+          initUser();
         }, function(response) {
           vm.serverErrors = true;
         });
@@ -31,6 +31,12 @@
 
       vm.cancel = function() {
         resetForm();
+      }
+
+      var initUser = function(){
+        CurrentUserFactory.getCurrentUser();
+        NotificationFactory.getMoreNotifications(1);
+        NotificationFactory.watchForNewNotifications();
       }
 
     }

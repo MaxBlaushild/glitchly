@@ -32,8 +32,7 @@
           timeout: 45
       });
 
-      notificationWatcher.on('change', function(jNotification){
-        var notification = JSON.parse(jNotification);
+      notificationWatcher.on('change', function(jNotification){        var notification = JSON.parse(jNotification);
         notifications.unshift(notification);
         if (notifications.length >= 8) {
           notifications.pop();

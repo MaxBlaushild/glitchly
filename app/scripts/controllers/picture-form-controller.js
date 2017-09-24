@@ -84,7 +84,6 @@
       $('#form-view').toggle();
     }
 
-    // pjs.uploadImage is a processing method that is strongly typed, thus requiring me to split up the filters into arrays
     function glitchPicture(){
       toggleInProgressView();
       var pjs = Processing.getInstanceById('image-preview');

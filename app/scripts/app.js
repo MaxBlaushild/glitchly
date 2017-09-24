@@ -19,20 +19,20 @@ angular
   })
   .run(function($rootScope, $http, $window, $location, $routeParams, AuthService) {
 
-    var routesThatDontRequireAuth = ['/login', '/try-glitchly', '/sign-up'];
+    // var routesThatDontRequireAuth = ['/login', '/try-glitchly', '/sign-up'];
 
-    var routeClean = function (route) {
-      return (routesThatDontRequireAuth.indexOf(route) > -1);
-    };
+    // var routeClean = function (route) {
+    //   return (routesThatDontRequireAuth.indexOf(route) > -1);
+    // };
 
-    $rootScope.$on('$routeChangeStart', function(){
+    // $rootScope.$on('$routeChangeStart', function(){
 
-      if (!routeClean($location.url()) && !AuthService.isLoggedIn()) {
-        // redirect back to login
-        $location.path('/try-glitchly');
-      }
+    //   if (!routeClean($location.url()) && !AuthService.isLoggedIn()) {
+    //     // redirect back to login
+    //     $location.path('/try-glitchly');
+    //   }
 
-    });
+    // });
 
   });
 
